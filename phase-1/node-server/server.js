@@ -18,7 +18,6 @@ function start() {
     logger.info('v' + constants.VERSION + ' starting up');
     logger.info('Environment: ' + constants.ENV);
 
-    // mongoose startup
     async.series([
         function(cb) {
             aws.init(cb);

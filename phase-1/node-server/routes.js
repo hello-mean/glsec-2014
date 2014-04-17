@@ -3,7 +3,7 @@
 //
 
 // controllers
-var storageController = require('./controllers/storage');
+var todoController = require('./controllers/todo');
 
 // misc
 var logger = require('./logger').prefix('HTTP Routes');
@@ -20,7 +20,12 @@ function setup(app, callback) {
     //
     // API
     //
-    app.get('/api/storage', storageController.get);
+
+    // Todo routes
+    app.get('/api/todo/:id/files', todoController.getFiles);
+    app.get('/api/todo/:id/file/:name', todoController.getFile);
+    app.del('/api/todo/:id/file/:name', todoController.deleteFile);
+    app.post('/api/todo/:id/files', todoController.postFile);
 
     callback && callback();
 }

@@ -46,9 +46,58 @@ function init(cb) {
  * @param {function(err, data)} cb Callback
  */
 function s3get(key, cb) {
+    logger.info('S3 get: ' + key);
+
     s3.getObject({
         Bucket: S3_BUCKET,
         Key: key
+    }, cb);
+}
+
+/**
+ * Gets the specified S3 object
+ *
+ * @param string prefix Prefix
+ * @param {function(err, data)} cb Callback
+ */
+function s3list(prefix, cb) {
+    logger.info('S3 list: ' + prefix);
+
+    s3.listObjects({
+        Bucket: S3_BUCKET,
+        Prefix: prefix,
+        Delimiter: '/'
+    }, cb);
+}
+
+/**
+ * Deletes the specified S3 object
+ *
+ * @param string key Key (file name)
+ * @param {function(err, data)} cb Callback
+ */
+function s3delete(key, cb) {
+    logger.info('S3 delete: ' + key);
+
+    s3.deleteObject({
+        Bucket: S3_BUCKET,
+        Key: key
+    }, cb);
+}
+
+/**
+ * Adds an object to S3
+ *
+ * @param string key Key (file name)
+ * @param {function(err, data)} cb Callback
+ */
+function s3put(key, contents, cb) {
+    logger.info('S3 put: ' + key);
+
+    s3.putObject({
+        Bucket: S3_BUCKET,
+        Key: key,
+        Body: contents
     }, cb);
 }
 
@@ -57,3 +106,6 @@ function s3get(key, cb) {
 //
 exports.init = init;
 exports.s3get = s3get;
+exports.s3list = s3list;
+exports.s3delete = s3delete;
+exports.s3put = s3put;

@@ -59,7 +59,6 @@ function listen(callback) {
 
             //
             // Static files
-            // NOTE: Load before passport, so static files aren't session'd
             //
             app.use(express.static(publicDir));
 
