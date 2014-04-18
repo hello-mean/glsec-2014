@@ -8,7 +8,7 @@
 /**
  * GET /
  */
-function (req, res) {
+function get(req, res) {
     res.send('hello mean');
 }
 
