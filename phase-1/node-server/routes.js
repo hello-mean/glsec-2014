@@ -3,6 +3,7 @@
 //
 
 // controllers
+var homeController = require('./controllers/home');
 var todoController = require('./controllers/todo');
 
 // misc
@@ -20,6 +21,9 @@ function setup(app, callback) {
     //
     // API
     //
+    
+    // Home routes
+    app.get('/', homeController.get);
 
     // Todo routes
     app.get('/api/todo/:id/files', todoController.getFiles);
