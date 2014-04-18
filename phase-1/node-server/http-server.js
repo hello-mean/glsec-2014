@@ -67,7 +67,7 @@ function listen(callback) {
             
             // listen for connection
             logger.info('Starting HTTP server on port ' + port);
-            httpServer.listen(constants.SERVER_PORT);
+            httpServer.listen(port);
 
             cb();
         },
