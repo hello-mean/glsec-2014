@@ -62,9 +62,12 @@ function listen(callback) {
             //
             app.use(express.static(publicDir));
 
-            // listen for connections
-            logger.info('Starting HTTP server on ' + constants.SERVER_IP + ':' + constants.SERVER_PORT);
-            httpServer.listen(constants.SERVER_PORT, constants.SERVER_IP);
+            // For IISnode, use PORT environment variable
+            var port = process.env.PORT ? process.env.PORT : constants.SERVER_PORT;
+            
+            // listen for connection
+            logger.info('Starting HTTP server on port ' + port);
+            httpServer.listen(constants.SERVER_PORT);
 
             cb();
         },
