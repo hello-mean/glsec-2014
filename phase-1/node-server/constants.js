@@ -34,3 +34,8 @@ exports.SERVER_PORT = exports.IS_PRODUCTION ? 80 : 3001;
  * HTTP / Socket.IO server IP
  */
 exports.SERVER_IP = exports.IS_PRODUCTION ? '127.0.0.1' : '0.0.0.0';
+
+/**
+ * App domain
+ */
+exports.DOMAIN = 'foofactory.net';

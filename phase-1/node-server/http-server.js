@@ -20,6 +20,15 @@ var webDir = __dirname + '/';
 var publicDir = webDir + 'public/';
 
 /**
+ * CORS middleware
+ */
+function allowCrossDomain(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+
+    next();
+}
+
+/**
  * Begin listening for HTTP connections
  *
  * @param {function(err, http.Server)} callback callback
@@ -38,6 +47,8 @@ function listen(callback) {
             app.use(express.cookieParser());
             app.use(express.bodyParser());
             app.use(express.methodOverride());
+
+            app.use(allowCrossDomain);
 
             //
             // app locals
@@ -64,7 +75,7 @@ function listen(callback) {
 
             // For IISnode, use PORT environment variable
             var port = process.env.PORT ? process.env.PORT : constants.SERVER_PORT;
-            
+
             // listen for connection
             logger.info('Starting HTTP server on port ' + port);
             httpServer.listen(port);
