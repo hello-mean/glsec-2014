@@ -27,7 +27,9 @@ function setup(app, callback) {
 
     // Todo routes
     app.get('/api/todo/:id/files', todoController.getFiles);
+    app.options('/api/todo/:id/files', function(req, res) { res.send(200); });
     app.get('/api/todo/:id/file/:name', todoController.getFile);
+    app.options('/api/todo/:id/file/:name', function(req, res) { res.send(200); })
     app.del('/api/todo/:id/file/:name', todoController.deleteFile);
     app.post('/api/todo/:id/files', todoController.postFile);
 

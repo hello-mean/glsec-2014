@@ -31,6 +31,24 @@
             }
         };
     }).
+    directive('showAttachFile', ['$parse', 'Attachments', function ($parse, Attachments) {
+        return {
+            restrict: 'A',
+            link: function (scope, elem, attrs) {
+                var modal = angular.element('#attachModal');
+
+                elem.on('click', function (e) {
+                    var value = $parse(attrs.todoid)(scope);
+                    Attachments.setCurrentTodo(value);
+                    modal.modal('show');
+                });
+
+                elem.scope().$on('todo:attached', function () {
+                    modal.modal('hide');
+                });
+            }
+        };
+    }]).
     directive('giveFocus', function() {
         return {
             restrict: 'A',

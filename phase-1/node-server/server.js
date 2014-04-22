@@ -18,6 +18,11 @@ function start() {
     logger.info('v' + constants.VERSION + ' starting up');
     logger.info('Environment: ' + constants.ENV);
 
+process.on('uncaughtException', function (err) {
+    //fs.writeFile("test.txt",  err, "utf8");
+    logger.error(err);    
+})
+
     async.series([
         function(cb) {
             aws.init(cb);
