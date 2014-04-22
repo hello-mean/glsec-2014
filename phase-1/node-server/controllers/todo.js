@@ -2,6 +2,10 @@
 // Imports
 //
 var aws = require('../aws');
+var fs = require('fs');
+var async = require('async');
+
+var logger = require('../logger').prefix('/api/todo');
 
 /*
  * Todo routes:
@@ -112,31 +116,27 @@ function deleteFile(req, res) {
  * POST /api/todo/:id/files
  */
 function postFile(req, res) {
-    if (typeof req.body.name !== 'string' || req.body.name == '') {
-        return res.send(500, 'name must be specified');
+    if (typeof req.files.file === 'undefined') {
+        return res.send(500, 'File must be specified');
     }
 
-    if (req.body.name.indexOf('/') || req.body.name.indexOf('\\')) {
-        return res.send(500, 'name cannot have path separators in it');
-    }
+    var todoFilePath = getTodoFilePath(req.params.id, req.files.file.name);
 
-    // TODO accept file upload
-    if (typeof req.body.contents === 'undefined') {
-        return res.send(500, 'contents must be specified');
-    }
-
-    var todoFilePath = getTodoFilePath(req.params.id, req.body.name);
-
-    aws.s3put(
-        todoFilePath,
-        req.body.contents,
-        function(err, data) {
-            if (err) {
-                res.send(500, err);
-            }
-
-            res.send(true);
-        });
+    // read file in
+    async.waterfall(
+    [
+        function(cb) {
+            fs.readFile(req.files.file.path, cb);
+        },
+        function(data, cb) {
+            aws.s3put(
+                todoFilePath,
+                data,
+                cb);
+        }
+    ], function(err, result) {
+        res.send(err ? 500 : 200, err || true);
+    });
 }
 
 //
