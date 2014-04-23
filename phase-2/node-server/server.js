@@ -6,22 +6,24 @@ var async = require('async');
 var constants = require('./constants');
 var logger = require('./logger').prefix('Server');
 var httpSrv = require('./http-server');
+var socketIoSrv = require('./socketIoServer');
+var adminManager = require('./adminManager');
 var aws = require('./aws');
 
 //
 // Members
 //
 var httpServer;
+var socketIoServer;
 
 // log startup
 function start() {
     logger.info('v' + constants.VERSION + ' starting up');
     logger.info('Environment: ' + constants.ENV);
 
-process.on('uncaughtException', function (err) {
-    //fs.writeFile("test.txt",  err, "utf8");
-    logger.error(err);    
-})
+    process.on('uncaughtException', function (err) {
+        logger.error(err);
+    });
 
     async.series([
         function(cb) {
@@ -30,8 +32,17 @@ process.on('uncaughtException', function (err) {
         function(cb) {
             httpSrv.listen(function(err, newHttpServer) {
                 httpServer = newHttpServer;
-                cb();
+                cb(err);
             });
+        },
+        function(cb) {
+            socketIoSrv.init(httpServer, function(err, newSocketServer) {
+                socketIoServer = newSocketServer;
+                cb(err);
+            });
+        },
+        function(cb) {
+            adminManager.init(socketIoServer, cb);
         }
     ],
     function(err) {

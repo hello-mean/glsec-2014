@@ -33,7 +33,12 @@ namespace Presentation.Web
                         "~/Content/bootstrap/css/bootstrap.css",
                         "~/Content/bootstrap/css/*.css"
                 ));
-
+            
+            bundles.Add(new ScriptBundle("~/bundles/api").Include(
+                "~/Scripts/api/angular-file-upload.min.js",
+                "~/Scripts/api/socket.io.js",
+                "~/Scripts/api/admin.js"
+                ));
         }
     }
 }

@@ -209,11 +209,13 @@
     <Content Include="Content\modules\todolist.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\angular-file-upload.min.js" />
+    <Content Include="Scripts\api\admin.js" />
+    <Content Include="Scripts\api\angular-file-upload.min.js" />
     <Content Include="Scripts\angular\angular-bootstrap.js" />
     <Content Include="Scripts\angular\angular-cookies.js" />
     <Content Include="Scripts\angular\angular-resource.js" />
     <Content Include="Scripts\angular\angular.js" />
+    <Content Include="Scripts\api\socket.io.js" />
     <Content Include="Scripts\app\application.js" />
     <Content Include="Scripts\app\controllers.js" />
     <Content Include="Scripts\app\directives.js" />

@@ -2,6 +2,7 @@
 // Imports
 //
 var winston = require('winston');
+var _ = require('lodash-node');
 
 var transports = [];
 
@@ -66,6 +67,9 @@ logger.prefix = function(prefix) {
             prefixedLogger.error(err);
         }
     };
+
+    // let the prefixed logger have EventEmitter bindings
+    prefixedLogger.on = _.bind(logger.on, logger);
 
     return prefixedLogger;
 };
