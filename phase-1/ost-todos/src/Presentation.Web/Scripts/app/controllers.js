@@ -56,11 +56,16 @@
         };
 
     }]).
-    controller("ListCtrl", ["$scope", "ListTodo", "Todo", function ($scope, ListTodo, Todo) {
+    controller("ListCtrl", ["$scope", "ListTodo", "Todo", "Attachments", function ($scope, ListTodo, Todo, Attachments) {
 
         $scope.$on('todo:deleted', function () {
             ListTodo.query({ listId: $scope.list.Id }, function (todos) {
                 $scope.list.Todos = todos;
+                $scope.list.Todos.forEach(function (t, j) {
+                    Attachments.getAttachments(t.Id).then(function (data) {
+                        t.Attachments = data;
+                    });
+                });
             });
         });
 
@@ -92,7 +97,7 @@
             return count;
         };
     }]).
-    controller("TodoCtrl", ["$scope", "Todo", function ($scope, Todo) {
+    controller("TodoCtrl", ["$scope", "Todo", "Attachments", function ($scope, Todo, Attachments) {
 
         $scope.showAttachments = false;
 
@@ -102,7 +107,12 @@
 
         $scope.deleteTodo = function (todo) {
             todo.deleting = true;
+
             Todo['delete']({ id: todo.Id }, {}, function () {
+                angular.forEach(todo.Attachments, function (attachment) {
+                    Attachments.deleteAttachment(todo.Id, attachment);
+                });
+
                 $scope.$emit('todo:deleted');
             }, function () {
                 todo.deleting = false;
@@ -136,6 +146,7 @@
     }]).
     controller('UploadCtrl', ['$scope', '$rootScope', '$fileUploader', 'Attachments', function ($scope, $rootScope, $fileUploader, Attachments) {
         
+        $scope.uploading = false;
 
         // create a uploader with options
         var uploader = $fileUploader.create({
@@ -153,10 +164,14 @@
                 id: todoId,
                 filename: item.file.name
             });
+
+            $scope.uploading = false;
         });
 
         $scope.upload = function () {
             var todoId = Attachments.currentTodoId;
+
+            $scope.uploading = true;
 
             var item = uploader.queue[0];
             item.url = 'http://api.foofactory.net/api/todo/' + todoId + '/files';
