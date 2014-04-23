@@ -27,7 +27,12 @@ function allowCrossDomain(req, res, next) {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'X-Requested-With');
 
-    next();
+    // authorize all OPTIONS requests
+    if (req.method === 'OPTIONS') {
+        res.send(200);
+    } else {
+        next();
+    }
 }
 
 /**
