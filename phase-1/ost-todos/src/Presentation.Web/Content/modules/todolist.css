@@ -26,3 +26,15 @@
     top: 8px;
     cursor: pointer;
 }
+
+.attachments h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 5px;
+}
+
+.attachment-list > ul li:last-child {
+    list-style-type: none;
+    margin-top: 8px;
+    margin-bottom: 8px;    
+}
