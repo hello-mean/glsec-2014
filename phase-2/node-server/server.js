@@ -16,6 +16,13 @@ var aws = require('./aws');
 var httpServer;
 var socketIoServer;
 
+var requestHandler = function(req) {
+  adminManager.push('api', {
+    path: req.path,
+    method: req.method
+  });
+};
+
 // log startup
 function start() {
     logger.info('v' + constants.VERSION + ' starting up');
@@ -30,7 +37,7 @@ function start() {
             aws.init(cb);
         },
         function(cb) {
-            httpSrv.listen(function(err, newHttpServer) {
+            httpSrv.listen(requestHandler, function(err, newHttpServer) {
                 httpServer = newHttpServer;
                 cb(err);
             });

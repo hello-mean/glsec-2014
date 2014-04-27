@@ -40,7 +40,7 @@ function allowCrossDomain(req, res, next) {
  *
  * @param {function(err, http.Server)} callback callback
  */
-function listen(callback) {
+function listen(reqHandler, callback) {
     logger.info('Initializing express');
 
     // startup the HTTP server
@@ -79,6 +79,14 @@ function listen(callback) {
             // Static files
             //
             app.use(express.static(publicDir));
+
+            // Hook for all requests coming through
+            if (reqHandler) {
+              app.use(function(req, res, next) {
+                reqHandler(req);
+                next();
+              });
+            }
 
             // For IISnode, use PORT environment variable
             var port = process.env.PORT ? process.env.PORT : constants.SERVER_PORT;
