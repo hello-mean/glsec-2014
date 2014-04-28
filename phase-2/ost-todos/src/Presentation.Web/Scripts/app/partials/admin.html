@@ -5,10 +5,34 @@
 </div>
 
 <div class="row">
+    <div class="span4">
+        <rickshaw data-source="stats" data-metric="hits"></rickshaw>
+    </div>
+    <div class="span4">
+        <rickshaw data-source="stats" data-metric="bytes"></rickshaw>
+    </div>
+    <div class="span4">
+        <rickshaw data-source="stats" data-metric="cost"></rickshaw>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span4">
+        <rickshawstats data-source="stats" data-metric="totalHits" data-title="Hits"></rickshawstats>
+    </div>
+    <div class="span4">
+        <rickshawstats data-source="stats" data-metric="totalBytes" data-title="Bytes"></rickshawstats>
+    </div>
+    <div class="span4">
+        <rickshawstats data-source="stats" data-metric="totalCost" data-title="Cost"></rickshawstats>
+    </div>
+</div>
+
+<div class="row">
     <div class="span6">
         <h4>Logs:</h4>
-        <ul>
-            <li ng-repeat="log in logs">
+        <ul style="height: 400px; overflow: auto" scroll-if>
+            <li ng-repeat="log in logs" scroll-item>
                 [{{log.level}}] - {{log.msg}}
             </li>
         </ul>
@@ -16,16 +40,10 @@
     
     <div class="span6">
         <h4>API Requests:</h4>
-        <ul>
-            <li ng-repeat="req in requests">
+        <ul style="height: 400px; overflow: auto" scroll-if>
+            <li ng-repeat="req in requests" scroll-item>
                 [{{req.method}}] - {{req.path}}
             </li>
         </ul>
-    </div>
-</div>
-
-<div class="row">
-    <div class="span12">
-        <rickshaw data="stats"></rickshaw>
     </div>
 </div>

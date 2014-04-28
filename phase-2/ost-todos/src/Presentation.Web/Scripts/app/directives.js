@@ -79,7 +79,8 @@
         return {
             restrict: 'E',
             scope: {
-                data: '='
+                'source': '=',
+                'metric': '@'
             },
             template: '<div></div>',
             link: function (scope, element, attrs) {
@@ -92,9 +93,9 @@
                     width: attrs.width,
                     height: attrs.height,
                     renderer: 'line',
-                    series: new Rickshaw.Series.FixedDuration([{ name: 'hits' }], undefined, {
+                    series: new Rickshaw.Series.FixedDuration([{ name: scope.metric }], undefined, {
                         timeInterval: tv,
-                        maxDataPoints: 100,
+                        maxDataPoints: 20,
                         timeBase: new Date().getTime() / 1000
                     })
                 });
@@ -103,15 +104,12 @@
                 });
                 graph.render();
 
-                scope.$watchCollection('data', function (data) {
+                scope.$watchCollection('source', function (data) {
                     if (!graph != null) {
                         var latest = data[data.length - 1];
 
-                        var graphingData = {
-                            hits: latest.hits,
-                            bytes: latest.bytes,
-                            cost: latest.cost,
-                        };
+                        var graphingData = {};
+                        graphingData[scope.metric] = latest[scope.metric];
 
                         graph.series.addData(graphingData);
                         graph.update();
@@ -119,5 +117,46 @@
                 });
             }
         };
+    }).
+    directive('rickshawstats', function () {
+        return {
+            restrict: 'E',
+            scope: {
+                'source': '=',
+                'metric': '@',
+                'title': '@'
+            },
+            template: '<div>Total {{title}}: {{value}}</div>',
+            link: function (scope, element, attrs) {
+                scope.value = 0;
+
+                scope.$watchCollection('source', function (data) {
+                    var latest = data[data.length - 1];
+
+                    scope.value = latest[scope.metric].toLocaleString();
+                });
+            }
+        };
+    }).
+    directive('scrollItem', function() {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attributes) {
+                if (scope.$last) {
+                    scope.$emit('finished');
+                }
+            }
+        }
+    }).
+    directive('scrollIf', function() {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attributes) {
+                scope.$on('finished', function () {
+                    var height = element.outerHeight();
+                    element.scrollTop(height);
+                });
+            }
+        }
     })
 ;

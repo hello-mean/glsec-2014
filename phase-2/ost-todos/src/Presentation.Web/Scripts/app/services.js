@@ -45,7 +45,7 @@
         var socket = io.connect('http://api.foofactory.net:80/');
 
         var service = {
-            logs: [{msg: 'hello', level: 'info'}],
+            logs: [],
             stats: [],
             requests: []
         };
