@@ -17,7 +17,7 @@ var app;
 var httpServer;
 
 var webDir = __dirname + '/';
-var publicDir = webDir + 'public/';
+var publicDir = webDir + 'public';
 
 /**
  * CORS middleware
@@ -25,13 +25,14 @@ var publicDir = webDir + 'public/';
 function allowCrossDomain(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
 
-    // authorize all OPTIONS requests
-    if (req.method === 'OPTIONS') {
-        res.send(200);
-    } else {
-        next();
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+      res.send(200);
+    }
+    else {
+      next();
     }
 }
 
@@ -51,11 +52,11 @@ function listen(reqHandler, callback) {
 
     async.waterfall([
         function(cb) {
+
+            app.use(allowCrossDomain);
             app.use(express.cookieParser());
             app.use(express.bodyParser());
             app.use(express.methodOverride());
-
-            app.use(allowCrossDomain);
 
             //
             // app locals
@@ -78,6 +79,7 @@ function listen(reqHandler, callback) {
             //
             // Static files
             //
+            logger.info('Serving files statically from: ' + publicDir);
             app.use(express.static(publicDir));
 
             // Hook for all requests coming through
