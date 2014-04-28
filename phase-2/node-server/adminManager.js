@@ -25,6 +25,9 @@ var logger = require('./logger').prefix('Admin Manager');
 //
 var STATS_PERIOD = 5000;
 
+var COST_PER_HIT = 0.01;
+var COST_PER_BYTE = 0.01;
+
 //
 // Members
 //
@@ -147,8 +150,27 @@ function push(cmd, data) {
     }
 }
 
+/**
+ * Logs an AWS command
+ *
+ * @param bytes Bytes transferred
+ */
+function hit(newBytes) {
+    totalHits++;
+    hits++;
+
+    totalBytes += newBytes;
+    bytes += newBytes;
+
+    var newCost = (COST_PER_HIT + COST_PER_BYTE * newBytes);
+
+    totalCost += newCost;
+    cost += newCost;
+}
+
 //
 // Exports
 //
 exports.init = init;
 exports.push = push;
+exports.hit = hit;

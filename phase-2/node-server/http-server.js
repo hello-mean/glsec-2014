@@ -9,6 +9,7 @@ var async = require('async');
 var constants = require('./constants');
 var logger = require('./logger').prefix('HTTP');
 var routes = require('./routes');
+var adminManager = require('./adminManager');
 
 //
 // Members
@@ -35,6 +36,20 @@ function allowCrossDomain(req, res, next) {
       next();
     }
 }
+
+/**
+ * Admin Manager Logger
+ *
+ * @param req Request
+ */
+function adminLogger(req, res, next) {
+    adminManager.push('api', {
+        path: req.path,
+        method: req.method
+    });
+
+    next();
+};
 
 /**
  * Begin listening for HTTP connections
@@ -82,13 +97,8 @@ function listen(reqHandler, callback) {
             logger.info('Serving files statically from: ' + publicDir);
             app.use(express.static(publicDir));
 
-            // Hook for all requests coming through
-            if (reqHandler) {
-              app.use(function(req, res, next) {
-                reqHandler(req);
-                next();
-              });
-            }
+            // Log all hits to the Admin Manager
+            app.use(adminLogger);
 
             // For IISnode, use PORT environment variable
             var port = process.env.PORT ? process.env.PORT : constants.SERVER_PORT;

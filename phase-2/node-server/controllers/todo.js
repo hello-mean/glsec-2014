@@ -6,6 +6,7 @@ var fs = require('fs');
 var async = require('async');
 
 var logger = require('../logger').prefix('/api/todo');
+var adminManager = require('../adminManager');
 
 /*
  * Todo routes:
@@ -52,6 +53,8 @@ function getFiles(req, res) {
     aws.s3list(
         todoPath,
         function(err, data) {
+            adminManager.hit(0);
+
             if (err) {
                 return res.send(500, err);
             }
@@ -87,11 +90,14 @@ function getFile(req, res) {
         todoFilePath,
         function(err, data) {
             if (err) {
+                adminManager.hit(0);
                 res.send(500, err);
             }
 
             var buff = new Buffer(data.Body, "binary");
             res.send(buff);
+
+            adminManager.hit(buff.length);
         });
 }
 
@@ -104,6 +110,8 @@ function deleteFile(req, res) {
     aws.s3delete(
         todoFilePath,
         function(err, data) {
+            adminManager.hit(0);
+
             if (err) {
                 res.send(500, err);
             }
@@ -129,6 +137,8 @@ function postFile(req, res) {
             fs.readFile(req.files.file.path, cb);
         },
         function(data, cb) {
+            adminManager.hit(data.length);
+
             aws.s3put(
                 todoFilePath,
                 data,
