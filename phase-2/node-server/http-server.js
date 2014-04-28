@@ -56,7 +56,7 @@ function adminLogger(req, res, next) {
  *
  * @param {function(err, http.Server)} callback callback
  */
-function listen(reqHandler, callback) {
+function listen(callback) {
     logger.info('Initializing express');
 
     // startup the HTTP server
