@@ -74,6 +74,21 @@ function handleConnection(socket) {
 
     sockets[socket.id] = socket;
 
+    //
+    // Events
+    //
+    socket.on('log', function(data) {
+        push('log', data);
+    });
+
+    socket.on('api', function(data) {
+        push('api', data);
+    });
+
+    socket.on('hit', function(data) {
+        hit(data);
+    });
+
     // send stats right away
     sendStats();
 }
@@ -121,8 +136,7 @@ function init(socketIoServer, callback) {
     logger.on('logging', function(transport, level, msg, meta) {
         push('log', {
             level: level,
-            msg: msg,
-            meta: meta
+            msg: msg
         });
     });
 

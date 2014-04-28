@@ -33,9 +33,19 @@ exports.SERVER_PORT = exports.IS_PRODUCTION ? 80 : 3001;
 /**
  * HTTP / Socket.IO server IP
  */
-exports.SERVER_IP = exports.IS_PRODUCTION ? '127.0.0.1' : '0.0.0.0';
+exports.SERVER_IP = '127.0.0.1';
+
+/**
+ * Server URL
+ */
+exports.SERVER_URL = 'http://' + exports.SERVER_IP + ':' + exports.SERVER_PORT;
 
 /**
  * App domain
  */
 exports.DOMAIN = 'foofactory.net';
+
+/**
+ * API server URL
+ */
+exports.API_SERVER = exports.IS_PRODUCTION ? 'http://api.foofactory.net' : exports.SERVER_URL;
