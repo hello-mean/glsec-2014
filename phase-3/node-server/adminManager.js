@@ -26,7 +26,7 @@ var logger = require('./logger').prefix('Admin Manager');
 var STATS_PERIOD = 5000;
 
 var COST_PER_HIT = 0.01;
-var COST_PER_BYTE = 0.01;
+var COST_PER_BYTE = 0.000001;
 
 //
 // Members
@@ -46,6 +46,8 @@ var bytes = 0;
 var totalCost = 0.0;
 var cost = 0.0;
 
+var instances = 0;
+
 var startTime = 0;
 
 //
@@ -59,10 +61,17 @@ var startTime = 0;
 function handleConnection(socket) {
     socket.logger = require('./logger').prefix('Socket.IO - ' +  socket.id);
 
+    // by default clients are not load balancers
+    socket.lb = false;
+
     socket.logger.info('New connection');
 
     socket.on('disconnect', function() {
         socket.logger.info('Disconnected');
+
+        if (socket.lb) {
+            instances--;
+        }
 
         if (sockets[socket.id]) {
             delete sockets[socket.id];
@@ -78,6 +87,7 @@ function handleConnection(socket) {
     // Events
     //
     socket.on('log', function(data) {
+        data.msg = '[' + socket.id + '] ' + data.msg;
         push('log', data);
     });
 
@@ -87,6 +97,15 @@ function handleConnection(socket) {
 
     socket.on('hit', function(data) {
         hit(data);
+    });
+
+    socket.on('lb', function(data) {
+        // this is a load balanced instance
+        socket.lb = true;
+        instances++;
+
+        // notify everyone
+        sendStats();
     });
 
     // send stats right away
@@ -105,8 +124,16 @@ function sendStats() {
         cost: cost,
         totalCost: totalCost,
         period: STATS_PERIOD,
-        uptime: +(new Date) - startTime
+        uptime: +(new Date) - startTime,
+        instances: instances
     });
+}
+
+/**
+ * Sends stats and resets the interval
+ */
+function sendStatsAndReset() {
+    sendStats();
 
     hits = 0;
     bytes = 0;
@@ -160,7 +187,10 @@ function push(cmd, data) {
     for (var socketId in sockets) {
         var socket = sockets[socketId];
 
-        socket.emit(cmd, data);
+        // only emit to non-loadbalanced instances
+        if (socket.lb === false) {
+            socket.emit(cmd, data);
+        }
     }
 }
 

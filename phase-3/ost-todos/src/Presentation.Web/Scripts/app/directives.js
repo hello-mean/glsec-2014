@@ -80,7 +80,8 @@
             restrict: 'E',
             scope: {
                 'source': '=',
-                'metric': '@'
+                'metric': '@',
+                'color': '@'
             },
             template: '<div></div>',
             link: function (scope, element, attrs) {
@@ -93,10 +94,11 @@
                     width: attrs.width,
                     height: attrs.height,
                     renderer: 'line',
-                    series: new Rickshaw.Series.FixedDuration([{ name: scope.metric }], undefined, {
+                    interpolation: 'linear',
+                    series: new Rickshaw.Series.FixedDuration([{ name: scope.metric, color: scope.color }], undefined, {
                         timeInterval: tv,
                         maxDataPoints: 20,
-                        timeBase: new Date().getTime() / 1000
+                        timeBase: new Date().getTime() / 1000,
                     })
                 });
                 var hoverDetail = new Rickshaw.Graph.HoverDetail({
@@ -153,8 +155,7 @@
             restrict: 'A',
             link: function (scope, element, attributes) {
                 scope.$on('finished', function () {
-                    var height = element.outerHeight();
-                    element.scrollTop(height);
+                    element.scrollTop(element.scrollHeight);
                 });
             }
         }

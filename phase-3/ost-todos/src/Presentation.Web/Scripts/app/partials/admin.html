@@ -5,26 +5,38 @@
 </div>
 
 <div class="row">
-    <div class="span4">
-        <rickshaw data-source="stats" data-metric="hits"></rickshaw>
+    <div class="span6">
+        <rickshaw data-source="stats" data-metric="hits" data-color="blue"></rickshaw>
     </div>
-    <div class="span4">
-        <rickshaw data-source="stats" data-metric="bytes"></rickshaw>
-    </div>
-    <div class="span4">
-        <rickshaw data-source="stats" data-metric="cost"></rickshaw>
+    <div class="span6">
+        <rickshaw data-source="stats" data-metric="bytes" data-color="orange"></rickshaw>
     </div>
 </div>
 
 <div class="row">
-    <div class="span4">
+    <div class="span6">
         <rickshawstats data-source="stats" data-metric="totalHits" data-title="Hits"></rickshawstats>
     </div>
-    <div class="span4">
+    <div class="span6">
         <rickshawstats data-source="stats" data-metric="totalBytes" data-title="Bytes"></rickshawstats>
     </div>
-    <div class="span4">
+</div>
+
+<div class="row">
+    <div class="span6">
+        <rickshaw data-source="stats" data-metric="cost" data-color="red"></rickshaw>
+    </div>
+    <div class="span6">
+        <rickshaw data-source="stats" data-metric="instances" data-color="black"></rickshaw>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span6">
         <rickshawstats data-source="stats" data-metric="totalCost" data-title="Cost"></rickshawstats>
+    </div>
+    <div class="span6">
+        <rickshawstats data-source="stats" data-metric="instances" data-title="Instances"></rickshawstats>
     </div>
 </div>
 

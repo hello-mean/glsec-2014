@@ -16,33 +16,36 @@ var client = io.connect(constants.API_SERVER);
 client.on('connect', function() {
     logger.info('Connected');
 
+    // tell the socket.io server that we're a loadbalanced instance
+    client.emit('lb');
+
     //
     // Pretends to get random hits
     //
     setInterval(function() {
 
         //
-        // 10% chance of a log event
+        // 1% chance of a log event
         //
-        if (randomChance(0.2)) {
+        if (randomChance(0.01)) {
             client.emit('log', {
                 level: 'info',
-                msg: 'Blah blah blah'
+                msg: 'Blah blah blah ' + randomNumber(0, 1000)
             });
         }
 
         //
         // 33% chance of an API call event
         //
-        if (randomChance(0.5)) {
+        if (randomChance(0.33)) {
             client.emit('api', {
                 method: 'GET',
-                route: '/api/fake'
+                path: '/api/todo/' + randomNumber(0, 100) + '/files/'
             });
         }
 
         //
-        // 50% chance of a hit
+        // 100% chance of a hit
         //
         client.emit('hit', randomNumber(0, 1000000));
     }, 100);
@@ -91,7 +94,7 @@ client.$emit = function() {
 function randomChance(chance) {
     var max = 1 / chance;
 
-    return randomNumber(0, max);
+    return randomNumber(0, max) == 0;
 }
 
 /**
