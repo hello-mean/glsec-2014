@@ -1,4 +1,4 @@
-﻿angular.module("todos.controllers", ["todos.services", "angularFileUpload", ]).
+﻿angular.module("todos.controllers", ["todos.services", "angularFileUpload" ]).
     controller("LoginCtrl", ["$scope", "$http", "$location", function ($scope, $http, $location) {
 
         $scope.login = function () {
@@ -165,4 +165,9 @@
             console.log('uploading: ' + name + ' for ' + todoId);
             uploader.uploadAll();           
         };
+    }]).
+    controller('AdminCtrl', ['$scope', 'Admin', function ($scope, Admin) {
+        $scope.logs = Admin.logs;
+        $scope.requests = Admin.requests;
+        $scope.stats = Admin.stats;
     }]);

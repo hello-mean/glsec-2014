@@ -27,6 +27,7 @@ namespace Presentation.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/base.css",
+                "~/Scripts/api/rickshaw.css",
                 "~/Content/modules/*.css"));
 
             bundles.Add(new StyleBundle("~/Content/bootstrap/css/bundle").Include(
@@ -35,8 +36,11 @@ namespace Presentation.Web
                 ));
             
             bundles.Add(new ScriptBundle("~/bundles/api").Include(
-                "~/Scripts/api/angular-file-upload.min.js",
+                "~/Scripts/api/angularFileUpload.js",
                 "~/Scripts/api/socket.io.js",
+                "~/Scripts/api/d3.js",
+                "~/Scripts/api/d3.layout.js",
+                "~/Scripts/api/rickshaw.js",
                 "~/Scripts/api/admin.js"
                 ));
         }

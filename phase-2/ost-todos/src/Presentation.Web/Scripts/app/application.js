@@ -1,10 +1,11 @@
 ﻿"use strict";
 
-var application = angular.module("todos", ["todos.controllers", "ngCookies", 'todos.directives', 'todos.filters']).
+var application = angular.module("todos", ["todos.controllers", "ngCookies", "ngRoute", 'todos.directives', 'todos.filters']).
     config(["$routeProvider", function($routeProvider) {
         $routeProvider.when('/lists', { templateUrl: '/Scripts/app/partials/lists.html', controller: 'ListsCtrl' });
         $routeProvider.when('/login', { templateUrl: '/Scripts/app/partials/login.html', controller: 'LoginCtrl' });
         $routeProvider.when('/register', { templateUrl: '/Scripts/app/partials/register.html', controller: 'RegisterCtrl' });
+        $routeProvider.when('/admin', { templateUrl: '/Scripts/app/partials/admin.html', controller: 'AdminCtrl' });
         $routeProvider.otherwise({ redirectTo: '/login' });
     }]).
     config(["$httpProvider", function($httpProvider) {

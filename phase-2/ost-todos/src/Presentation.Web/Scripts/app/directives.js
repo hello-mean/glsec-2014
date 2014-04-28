@@ -74,4 +74,52 @@
                 });
             }
         };
-    });
+    }).
+    directive('rickshaw', function () {
+        return {
+            restrict: 'E',
+            scope: {
+                data: '='
+            },
+            template: '<div></div>',
+            link: function (scope, element, attrs) {
+                scope.$watch('data', function (newVal, oldVal) {
+                    if (!newVal) {
+                        return;
+                    }
+                    var tv = 200;
+                    element[0].innerHTML = '';
+                    var graph = new Rickshaw.Graph({
+                        element: element[0],
+                        width: attrs.width,
+                        height: attrs.height,
+                        renderer: 'line',
+                        series: new Rickshaw.Series.FixedDuration([{ name: 'one' }], undefined, {
+                            timeInterval: tv,
+                            maxDataPoints: 100,
+                            timeBase: new Date().getTime() / 1000
+                        })
+                    });
+                    var hoverDetail = new Rickshaw.Graph.HoverDetail({
+                        graph: graph
+                    });
+                    graph.render();
+
+                    var i = 0;
+                    var iv = setInterval(function () {
+
+                        var data = { one: Math.floor(Math.random() * 40) + 120 };
+
+                        var randInt = Math.floor(Math.random() * 100);
+                        data.two = (Math.sin(i++ / 40) + 4) * (randInt + 400);
+                        data.three = randInt + 300;
+
+                        graph.series.addData(data);
+                        graph.render();
+
+                    }, tv);
+                });
+            }
+        };
+    })
+;

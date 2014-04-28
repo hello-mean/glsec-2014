@@ -209,17 +209,23 @@
     <Content Include="Content\modules\todolist.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular\angular-route.js" />
+    <Content Include="Scripts\angular\angular.js" />
     <Content Include="Scripts\api\admin.js" />
-    <Content Include="Scripts\api\angular-file-upload.min.js" />
+    <Content Include="Scripts\api\angularFileUpload.js" />
     <Content Include="Scripts\angular\angular-bootstrap.js" />
     <Content Include="Scripts\angular\angular-cookies.js" />
     <Content Include="Scripts\angular\angular-resource.js" />
-    <Content Include="Scripts\angular\angular.js" />
+    <Content Include="Scripts\api\d3.js" />
+    <Content Include="Scripts\api\d3.layout.js" />
+    <Content Include="Scripts\api\rickshaw.css" />
+    <Content Include="Scripts\api\rickshaw.js" />
     <Content Include="Scripts\api\socket.io.js" />
     <Content Include="Scripts\app\application.js" />
     <Content Include="Scripts\app\controllers.js" />
     <Content Include="Scripts\app\directives.js" />
     <Content Include="Scripts\app\filters.js" />
+    <Content Include="Scripts\app\partials\admin.html" />
     <Content Include="Scripts\app\partials\lists.html" />
     <Content Include="Scripts\app\partials\login.html" />
     <Content Include="Scripts\app\partials\register.html" />
@@ -262,6 +268,9 @@
       <Project>{FD2016FF-4272-484A-9BFD-53E23DC6D5E5}</Project>
       <Name>Infrastructure.IoC</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
