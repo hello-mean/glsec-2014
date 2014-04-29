@@ -1,6 +1,11 @@
 ﻿<div class="row">
     <div class="span12">
-        <h2>Admin</h2>
+        <h2 class="pull-left">Admin</h2>
+
+        <div class="pull-right">
+            <button class="btn" ng-click="addInstance()" ng-disabled="addInstanceDisabled">+ Instance</button>
+            <button class="btn" ng-click="delInstance()" ng-disabled="delInstanceDisabled">- Instance</button>
+        </div>
     </div>
 </div>
 
@@ -15,10 +20,10 @@
 
 <div class="row">
     <div class="span6">
-        <rickshawstats data-source="stats" data-metric="totalHits" data-title="Hits"></rickshawstats>
+        <rickshawstats data-source="stats" data-metric="totalHits" data-title="Hits" data-prefix=""></rickshawstats>
     </div>
     <div class="span6">
-        <rickshawstats data-source="stats" data-metric="totalBytes" data-title="Bytes"></rickshawstats>
+        <rickshawstats data-source="stats" data-metric="totalBytes" data-title="Bytes" data-prefix=""></rickshawstats>
     </div>
 </div>
 
@@ -33,10 +38,10 @@
 
 <div class="row">
     <div class="span6">
-        <rickshawstats data-source="stats" data-metric="totalCost" data-title="Cost"></rickshawstats>
+        <rickshawstats data-source="stats" data-metric="totalCost" data-title="Cost" data-prefix="$"></rickshawstats>
     </div>
     <div class="span6">
-        <rickshawstats data-source="stats" data-metric="instances" data-title="Instances"></rickshawstats>
+        <rickshawstats data-source="stats" data-metric="instances" data-title="Instances" data-prefix=""></rickshawstats>
     </div>
 </div>
 

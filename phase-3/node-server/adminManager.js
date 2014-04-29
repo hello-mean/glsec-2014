@@ -25,8 +25,9 @@ var logger = require('./logger').prefix('Admin Manager');
 //
 var STATS_PERIOD = 5000;
 
-var COST_PER_HIT = 0.01;
-var COST_PER_BYTE = 0.000001;
+// S3 pricing as of 2014-04 (or something)
+var COST_PER_HIT = 0.00004;
+var COST_PER_BYTE = 0.00000000003;
 
 //
 // Members
@@ -71,6 +72,7 @@ function handleConnection(socket) {
 
         if (socket.lb) {
             instances--;
+			sendStats();
         }
 
         if (sockets[socket.id]) {
@@ -87,16 +89,22 @@ function handleConnection(socket) {
     // Events
     //
     socket.on('log', function(data) {
-        data.msg = '[' + socket.id + '] ' + data.msg;
-        push('log', data);
+        if (socket.lb) {
+            data.msg = '[' + socket.id + '] ' + data.msg;
+            push('log', data);
+        }
     });
 
     socket.on('api', function(data) {
-        push('api', data);
+        if (socket.lb) {
+            push('api', data);
+        }
     });
 
     socket.on('hit', function(data) {
-        hit(data);
+        if (socket.lb) {
+             hit(data);
+        }
     });
 
     socket.on('lb', function(data) {
@@ -170,7 +178,7 @@ function init(socketIoServer, callback) {
     //
     // Start the periodic stats emitter
     //
-    setInterval(sendStats, STATS_PERIOD);
+    setInterval(sendStatsAndReset, STATS_PERIOD);
 
     logger.info('Started successfully');
 

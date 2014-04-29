@@ -126,9 +126,10 @@
             scope: {
                 'source': '=',
                 'metric': '@',
-                'title': '@'
+                'title': '@',
+                'prefix': '@'
             },
-            template: '<div>Total {{title}}: {{value}}</div>',
+            template: '<div>Total {{title}}: {{prefix}}{{value}}</div>',
             link: function (scope, element, attrs) {
                 scope.value = 0;
 
@@ -155,7 +156,8 @@
             restrict: 'A',
             link: function (scope, element, attributes) {
                 scope.$on('finished', function () {
-                    element.scrollTop(element.scrollHeight);
+                    var height = element.outerHeight();
+                    element.scrollTop(height);
                 });
             }
         }

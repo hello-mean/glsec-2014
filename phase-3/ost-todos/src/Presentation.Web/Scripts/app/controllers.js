@@ -166,8 +166,28 @@
             uploader.uploadAll();           
         };
     }]).
-    controller('AdminCtrl', ['$scope', 'Admin', function ($scope, Admin) {
+    controller('AdminCtrl', ['$scope', '$http', 'Admin', function ($scope, $http, Admin) {
         $scope.logs = Admin.logs;
         $scope.requests = Admin.requests;
         $scope.stats = Admin.stats;
+        $scope.addInstanceDisabled = false;
+        $scope.delInstanceDisabled = false;
+
+        $scope.addInstance = function () {
+            $scope.addInstanceDisabled = true;
+
+            $http.post('http://api.foofactory.net/api/admin/instances/increase')
+                .finally(function () {
+                    $scope.addInstanceDisabled = false;
+                });
+        };
+
+        $scope.delInstance = function () {
+            $scope.delInstanceDisabled = true;
+
+            $http.post('http://api.foofactory.net/api/admin/instances/decrease')
+                .finally(function () {
+                    $scope.delInstanceDisabled = false;
+                });
+        };
     }]);

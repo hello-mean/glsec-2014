@@ -54,6 +54,11 @@
             console.log(data);
             $rootScope.$apply(function() {
                 service.logs.push(data);
+
+                if (service.logs.length > 50) {
+                    var toRemove = service.logs.length - 50;
+                    service.logs.splice(0, toRemove);
+                }
             });
         });
 
@@ -68,6 +73,11 @@
             console.log(data);
             $rootScope.$apply(function () {
                 service.requests.push(data);
+
+                if (service.requests.length > 50) {
+                    var toRemove = service.requests.length - 50;
+                    service.requests.splice(0, toRemove);
+                }
             });
         });
 
