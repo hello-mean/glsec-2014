@@ -62,24 +62,28 @@
                     <section>
                         <h2>The Scenario</h2>
                         
-                        <p>You are a front-end web developer working at the FooFactory.</p>
+                        <ul>
+                            <li class="fragment">You are a full-stack developer working at the FooFactory.</li>
                         
-                        <p>The FooFactory has an internal task management system based off 
-                            the <a href="https://github.com/OSTUSA/ost-todos">OST Todos</a> .NET ASP MVC 4 application.</p>
+                            <li class="fragment">The FooFactory has an internal task management system based off 
+                                the <a href="https://github.com/OSTUSA/ost-todos">OST Todos</a> ASP.NET MVC 4 application
+                                and <a href="https://angularjs.org/">AngularJS</a>.</li>
                             
-                        <p>Your boss, BossFoo, is interested in rapidly prototyping some updates to the task management
-                            system as it is becoming an integral part of your businesses' daily operations.</p>
+                            <li class="fragment">Your boss, BossFoo, is interested in rapidly prototyping some updates to the task management
+                                system as it is becoming an integral part of your businesses' daily operations.</li>
+                        </ul>
                     </section>
+
                     <section>
                         <h2>BossFoo's Requirements</h2>
                         
                         <p>BossFoo wants you to add the following features to the OST Todos application:</p>
                         
                         <ul>
-                            <li>A document storage and retrieval system where users can attach documents to their Todos.</li>
+                            <li class="fragment">A document storage and retrieval system where users can attach documents to their Todos.</li>
                             
-                            <li>Admins should be able to monitor the system to see how often it is being used and 
-                                what the system is costing the company.</li>
+                            <li class="fragment">Admins should be able to monitor the system in real-time to see how it is being used and 
+                                what the system's operational costs are.</li>
                         </ul>
                     </section>
                         
@@ -89,45 +93,145 @@
                         <p>However, you are constrained by the following criteria:</p>
                         
                         <ul>
-                            <li>BossFoo is under a time crunch to get this feature implemented and would prefer
-                                to see a prototype of how it will work over a fully-baked solution.</li>
+                            <li class="fragment">BossFoo is under a time and budget crunch to get these features implemented and 
+                                would prefer to see a prototype of how it will work and how much it will cost.</li>
                             
-                            <li>There is no short-term budget for new dedicated hardware or storage until 
+                            <li class="fragment">There is no short-term budget for new dedicated hardware or storage until 
                                 it has been proven to work, so an on-demand infrastructure-as-a-service (Iaas)
                                 should be used.</li>
+                                
+                            <li class="fragment">The prototype has to integrate seamlessly into the existing OST Todos application.</li>
                         </ul>
                     </section>
                 </section>
 
                 <section>
                     <section>
-                        <h2>Architectural Review</h2>
+                        <h2>The Path to Node.js</h2>
+                        
+                        <p>You carefully consider what you will need to build to prototype the new features:</p>
+                            
+                        <ul>
+                            <li class="fragment">A document storage system that will scale gracefully as usage increases.</li>
+
+                            <li class="fragment">A new API that allows for document listing, storage, retrieval and deleting.</li>
+
+                            <li class="fragment">An extension of the existing OST Todos AngularJS application that will 
+                                integrate with the new API.</li>
+                        </ul>
                     </section>
+                    
                     <section>
-                        <h2>Blah</h2>
+                        <h2>Document Storage</h2>
+                        
+                        <p>Since you have no hardware budget, you choose to use Amazon S3, a cloud-based file system
+                            that scales seamlessly.</p>
+                    </section>
+                    
+                    <section>
+                        <h2>API - The Contenders</h2>
+                        
+                        <p>There are at least two paths you could use to build the API:</p>
+                            
+                        <ul>
+                            <li class="fragment"><b>C# / ASP.net MVC</b>: Extend the existing application, add data models,
+                            build a new API, update the AngularJS app.</li>
+                            
+                            <li class="fragment"><b>Node.js</b>: Add a new API server that will handle the document storage,
+                            then update the AngularJS app to integrate with it.</li>
+                        </ul>
+                        
+                    </section>
+                    
+                    <section>
+                        <h2>What is Node.js?</h2>
+                        
+                        <p><a href="http://nodejs.org/">Node.js</a> is:</p>
+                        
+                        <ul>
+                            <li class="fragment">Written in JavaScript, using 
+                                Google's <a href="http://en.wikipedia.org/wiki/V8_%28JavaScript_engine%29">V8</a> runtime.</li>
+                            
+                            <li class="fragment">A dynamic runtime language, which makes rapid prototyping a breeze.</li>
+                                
+                            <li class="fragment">Event-driven, asynchronous, single threaded and non-blocking, which 
+                                makes it able to scale more efficiently than thread-per-connection models (eg. ASP).</li>
+                            
+                            <li class="fragment">Compatible with many existing JavaScript frameworks (underscore, lodash, 
+                                async, Q, etc)</li>
+                            
+                            <li class="fragment">A large community with a lot of active development.</a>
+                            
+                            <li class="fragment">Production-ready and used by
+                                <a href="http://highscalability.com/blog/2012/10/4/linkedin-moved-from-rails-to-node-27-servers-cut-and-up-to-2.html">LinkedIn</a>,
+                                <a href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U2ECG_ldV8E">eBay</a>, etc.</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h2>Why Choose Node.js?</h2>
+                        
+                        <ul>
+                            <li class="fragment">Node.js code is <b>JavaScript</b>, so front-end developers can get started
+                                writing back-end code quickly.</li>
+                                
+                            <li class="fragment">Node.js is great for <b>prototyping</b> since there is no build process, 
+                                the dynamic nature of JavaScript makes it easy to quickly change data model, etc.</li>
+                                
+                            <li class="fragment">Interacting with an external document storage system such as Amazon S3 introduces
+                                a high latency link.  The <b>non-blocking</b> nature of Node.js makes it easier to scale 
+                                in an environment where client connections may be active for many seconds while
+                                files are uploaded or downloaded from S3.</li>
+                            
+                            <li class="fragment">Node.js and <a href="http://socket.io/">Socket.IO</a> make it easy to 
+                                build <b>real-time</b> applications.</li>
+                        </ul>
                     </section>
                 </section>
                 
                 <section>
                     <section>
-                        <h2>Demo</h2>
+                        <h2>Phase 1: Building the API</h2>
                     </section>
+                    
                     <section>
-                        <h2>Blah</h2>
+                        <h2>Phase 2: Building the Admin Interface</h2>
+                    </section>
+                    
+                    <section>
+                        <h2>Phase 3: Scaling</h2>
+                    </section>
+                    
+                    <section>
+                        <h2>Phase 4: Rewriting the ASP.net MVC API</h2>
                     </section>
                 </section>
                 
                 <section>
                     <section>
                         <h2>Case Study</h2>
-                    </section>
-                    <section>
-                        <h2>Blah</h2>
+                        
+                        Time to implement:
+                            Phase 1
+                            Phase 2
+                            Phase 3
+                            Phase 4
+                            
+                        Findings: LOC for Node.js:
+                            Phase 1
+                            Phase 2
+                            Phase 3
+                            Phase 4 (vs Angular OST C# code)
+                        
                     </section>
                 </section>
 
                 <section>
                     <h2>Closing</h2>
+                    
+                    <p>This presentation and all code can be found on 
+                        <a href="https://github.com/hello-mean/glsec-2014">Github</a>.</p>
+                    
                 </section>
                 
             </div>
