@@ -66,12 +66,15 @@
                             <li class="fragment">You are a full-stack developer working at the <i>FooFactory</i>.</li>
                         
                             <li class="fragment">The FooFactory has an internal task management system based off 
-                                OST <a href="https://github.com/OSTUSA/ost-todos">Todos</a> (ASP.NET MVC 4 /
-                                 <a href="https://angularjs.org/">AngularJS</a>).</li>
+                                OST <a href="https://github.com/OSTUSA/ost-todos">Todos</a> (ASP.NET MVC 4,
+                                 <a href="https://angularjs.org/">AngularJS</a>, <a href="https://github.com/OSTUSA/ndriven">ndriven</a> (onion-architecture framework)).</li>
                             
                             <li class="fragment">Your boss, <i>BossFoo</i>, is interested in rapidly prototyping some new
                                 features for the task management system as it is becoming an integral part of 
                                 the FooFactory's daily operations.</li>
+                                
+                            <li class="fragment">BossFoo has read about Node.js and is interested in exploring using
+                                it to speed up and unify FooFactory's web development stacks.</li>
                         </ul>
                     </section>
                     
@@ -80,6 +83,8 @@
                         <h2>Demo</h2>
                         
                         <img src="img/ost-todos.png" />
+                        
+                        <p>OST <a href="https://github.com/OSTUSA/ost-todos">Todos</a> was built during last year's GLSEC</p>
                         
                         <p><a href="http://phase0.foofactory.net/">phase0.foofactory.net</a></p>
                         
@@ -180,7 +185,8 @@
                             
                             <li class="fragment">Production-ready and used by
                                 <a href="http://highscalability.com/blog/2012/10/4/linkedin-moved-from-rails-to-node-27-servers-cut-and-up-to-2.html">LinkedIn</a>,
-                                <a href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U2ECG_ldV8E">eBay</a>, etc.</li>
+                                <a href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U2ECG_ldV8E">eBay</a>, and
+                                supported by Microsoft.</li>
                         </ul>
                     </section>
                     
@@ -229,6 +235,40 @@
                                 
                             <li class="fragment">Hook your new node server into IIS server using <a href="https://github.com/tjanczuk/iisnode">iisnode</a>.</li>
                         </ol>
+                    </section>
+                    
+                    <section>
+                        <h2>Phase 1: Basic Code Layout</h2>
+                        
+                        <!-- TODO -->
+                    </section>
+                    
+                    <section>
+                        <h2>Phase 1: Code</h2>
+
+                        <pre><code data-trim>
+// imports
+var express = require('express');
+var s3 = new require('aws-sdk').S3();
+
+// startup the HTTP server
+app = express();
+
+httpServer.listen(80);
+
+// routes
+app.post('/api/todo/:id/files', function(req, res) {
+    fs.readFile(req.files.file.path, function(err, data) {
+        s3.putObject({
+            Bucket: 'glsec2014',
+            Key: '/todos/' + req.params.id + '/' + req.files.file.name,
+            Body: data
+        }, function(err, result) {
+            res.send(err ? 500 : 200, err || true);
+        });
+    });
+});
+                        </code></pre>
                     </section>
                 
                     <section>
@@ -313,6 +353,8 @@
                             <li class="fragment">Add an interface for Admins to increase or decrease the number of Node.js API server instances.</li>
                             
                             <li class="fragment">Allow Admins to monitor the number of instances.</li>
+                                
+                            <li class="fragment"></li>
                                 
                             <li class="fragment"><i>Note:</i> For this stage, we created fake load-balanced instances that pretend to get
                                 API hits for the purposes of demos.</li>
@@ -405,10 +447,10 @@
                             maintaining hardware that is running both IIS (or apache) and Node.js will be more complicated.</li>
                             
                         <li><b>Hook Node.js into IIS</b>: Consider using <a href="https://github.com/tjanczuk/iisnode">iisnode</a> to easily
-                            hook Node.js into your IIS server instead of adding a separate Node.js server</li>
+                            hook Node.js into your IIS server instead of adding a separate Node.js server.</li>
                             
                         <li><b>Use it for its' strengths</b>: Node.js is great for scaling.  Use it for REST APIs, real-time servers
-                            and other stateless applications that you may need to scale in the future</li>
+                            and other stateless applications that you may need to scale in the future.</li>
                     </ul>
                 </section>
                 
