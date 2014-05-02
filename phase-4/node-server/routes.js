@@ -32,16 +32,16 @@ function setup(app, callback) {
     app.get('/api/todo/:id/file/:name', todoController.getFile);
     app.del('/api/todo/:id/file/:name', todoController.deleteFile);
     app.post('/api/todo/:id/files', todoController.postFile);
-    app.put('/api/todo/:id', todoController.updateTodo);
-    app.delete('/api/todo/:id', todoController.deleteTodo);
+    app.put('/api/todos/:id', todoController.updateTodo);
+    app.delete('/api/todos/:id', todoController.deleteTodo);
 
     // TodoList Routes
-    app.post('/api/todolist/:id/todos', todoListController.addTodo);
-    app.get('/api/todolist/:id/todos', todoListController.getTodos);
+    app.post('/api/todolists/:id/todos', todoListController.addTodo);
+    app.get('/api/todolists/:id/todos', todoListController.getTodos);
     app.get('/api/todolists/:id', todoListController.getTodoList);
-    app.delete('/api/todolist/:id', todoListController.deleteTodoList);
+    app.delete('/api/todolists/:id', todoListController.deleteTodoList);
     app.get('/api/todolists', todoListController.getTodoLists);
-    app.post('/api/todolist', todoListController.addTodoList);
+    app.post('/api/todolists', todoListController.addTodoList);
 
 	  // Admin routes
 	  app.post('/api/admin/instances/increase', adminController.postInstanceIncrease);

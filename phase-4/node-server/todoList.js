@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 
 
 var todoSchema = mongoose.Schema({
-  Title: String,
-  Completed: Boolean
+  Title: { type: String, required: true },
+  Completed: { type: Boolean, default: false }
 });
 
 
@@ -19,8 +19,8 @@ exports.Todo = mongoose.model('Todo', todoSchema);
 
 
 var todoListSchema = mongoose.Schema({
-    Name: String,
-    OwnerId: String,
+    Name: { type: String, required: true },
+    OwnerId: { type: String, required: true},
     Todos: [todoSchema]
 });
 

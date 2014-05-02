@@ -106,8 +106,7 @@ function addTodoList(req, res) {
  */
 function addTodo(req, res) {
     var userId = req.get('userId');
-    var todo = new TodoList(req.body);
-    todoList.OwnerId = userId;
+    var todo = new Todo(req.body);
 
     var ObjectId = mongoose.Types.ObjectId;
     var id = new ObjectId(req.params.id);
@@ -128,7 +127,8 @@ function addTodo(req, res) {
           return res.send(500, err);
         }
 
-        return res.send(list.serialize());
+        return res.send(todo.serialize());
+        //return res.send(req.body);
       });
     });
 }
@@ -147,7 +147,7 @@ function getTodos(req, res) {
       }
 
       if (!list) {
-        return res.send(404);
+        return res.send(404, { msg: "stuff not found"});
       }
 
       var tempList = list.serialize();

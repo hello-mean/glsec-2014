@@ -1,12 +1,12 @@
 ﻿angular.module("todos.services", ['ngResource']).
     factory("TodoList", ['$resource', function ($resource) {
-        return $resource('/api/todolists/:id', { id: '@Id' });
+        return $resource('http://api.foofactory.net/api/todolists/:id', { id: '@Id' });
     }]).
     factory("ListTodo", ['$resource', function ($resource) {
-        return $resource('/api/todolists/:listId/todos');
+        return $resource('http://api.foofactory.net/api/todolists/:listId/todos');
     }]).
     factory("Todo", ['$resource', function ($resource) {
-        return $resource('/api/todos/:id', { id: '@Id' }, {
+        return $resource('http://api.foofactory.net/api/todos/:id', { id: '@Id' }, {
             update: { method: 'PUT' }
         });
     }]).
