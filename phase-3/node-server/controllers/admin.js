@@ -26,7 +26,7 @@ var workerInstance = require('../workerInstance');
 //
 var instances = [];
 var instanceCount = 0;
- 
+
 //
 // Routes
 //
@@ -35,28 +35,35 @@ var instanceCount = 0;
  */
 function postInstanceIncrease(req, res) {
     instanceCount++;
-	workerInstance.init(instanceCount, function(instance) {
-		instances.push(instance);
-	});
-	
-	res.send(true);
+
+    // NOTE: If you were using Amazon EC2 or Azure for Node.js instances,
+    // you could interact with the Amazon aws-sdk or azure-sdk-for-node.
+
+    workerInstance.init(instanceCount, function(instance) {
+        instances.push(instance);
+    });
+
+    res.send(true);
 }
 
 /**
  * POST /api/admin/instances/decrease
  */
 function postInstanceDecrease(req, res) {
-	if (instanceCount == 0) {
-		res.send(500, 'No more instances');
-		return;
-	}
+    if (instanceCount == 0) {
+        res.send(500, 'No more instances');
+        return;
+    }
 
-	var instance = instances.pop();
+    var instance = instances.pop();
     instanceCount--;
-	
-	instance.disconnect();
-	
-	res.send(true);
+
+    // NOTE: If you were using Amazon EC2 or Azure for Node.js instances,
+    // you could interact with the Amazon aws-sdk or azure-sdk-for-node.
+
+    instance.disconnect();
+
+    res.send(true);
 }
 
 //
