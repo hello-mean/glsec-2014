@@ -67,24 +67,24 @@
                         
                             <li class="fragment">The FooFactory has an internal task management system based off 
                                 OST <a href="https://github.com/OSTUSA/ost-todos">Todos</a> (ASP.NET MVC 4,
-                                 <a href="https://angularjs.org/">AngularJS</a>, <a href="https://github.com/OSTUSA/ndriven">ndriven</a> (onion-architecture framework)).</li>
+                                 <a href="https://angularjs.org/">AngularJS</a>, <a href="https://github.com/OSTUSA/ndriven">ndriven</a>).</li>
                             
-                            <li class="fragment">Your boss, <i>BossFoo</i>, is interested in rapidly prototyping some new
+                            <li class="fragment">Your boss, <i>BossFoo</i>, is interested in rapidly prototyping new
                                 features for the task management system as it is becoming an integral part of 
                                 the FooFactory's daily operations.</li>
                                 
-                            <li class="fragment">BossFoo has read about Node.js and is interested in exploring using
-                                it to speed up and unify FooFactory's web development stacks.</li>
+                            <li class="fragment">BossFoo has read about <a href="http://nodejs.org/">Node.js</a> and 
+                                is interested in exploring using it to speed up and unify FooFactory's web development stacks.</li>
                         </ul>
                     </section>
                     
                     <section>
                     
-                        <h2>Demo</h2>
+                        <h2>OST Todos Demo</h2>
                         
                         <img src="img/ost-todos.png" />
                         
-                        <p>OST <a href="https://github.com/OSTUSA/ost-todos">Todos</a> was built during last year's GLSEC</p>
+                        <p><i>OST <a href="https://github.com/OSTUSA/ost-todos">Todos</a> was built for GLSEC 2013.</i></p>
                         
                         <p><a href="http://phase0.foofactory.net/">phase0.foofactory.net</a></p>
                         
@@ -96,10 +96,10 @@
                         <p>BossFoo wants you to add the following features to the <i>Todos</i> application:</p>
                         
                         <ul>
-                            <li class="fragment">A document storage and retrieval system where users can attach documents to their tasks.</li>
+                            <li class="fragment">A <b>document storage</b> and retrieval system where users can attach documents to their tasks.</li>
                             
-                            <li class="fragment">An admin interface that can monitor the system in real-time to show how 
-                                it is being used and what the system's operational costs are.</li>
+                            <li class="fragment">An <b>admin interface</b> that can monitor the system in real-time to show 
+                                its load and operational costs.</li>
                         </ul>
                     </section>
                         
@@ -109,15 +109,15 @@
                         <p>However, you are constrained by the following criteria:</p>
                         
                         <ul>
-                            <li class="fragment">BossFoo is under a time and budget crunch to get these features implemented and 
+                            <li class="fragment">BossFoo is under a <b>time and budget crunch</b> to get these features implemented and 
                                 would prefer to see a prototype of how it will work before he invests in big hardware
                                 to run it full time.</li>
                             
-                            <li class="fragment">There is no short-term budget for new dedicated hardware or storage until 
-                                it has been proven to work, so an on-demand infrastructure-as-a-service (Iaas)
+                            <li class="fragment">There is <b>no short-term budget for dedicated hardware</b> or storage until 
+                                it has been proven to work, so an on-demand infrastructure-as-a-service (IaaS)
                                 should be used.</li>
                                 
-                            <li class="fragment">The prototype has to integrate seamlessly into the existing <i>Todos</i> application.</li>
+                            <li class="fragment">The prototype has to <b>integrate seamlessly</b> into the existing <i>Todos</i> application.</li>
                         </ul>
                     </section>
                 </section>
@@ -129,11 +129,11 @@
                         <p>You carefully consider what you will need to prototype the new features:</p>
                             
                         <ul>
-                            <li class="fragment">A document storage system that will scale gracefully as usage increases.</li>
+                            <li class="fragment">A <b>document storage system</b> that will scale gracefully as usage increases.</li>
 
-                            <li class="fragment">A new API that allows for document listing, creation, retrieval and deletion.</li>
+                            <li class="fragment">A <b>new API</b> that allows for document listing, creation, retrieval and deletion.</li>
 
-                            <li class="fragment">An update to the existing <i>Todos</i> AngularJS application that will 
+                            <li class="fragment">An <b>update to the <i>Todos</i> AngularJS application</b> that will 
                                 integrate with the new API.</li>
                         </ul>
                     </section>
@@ -149,14 +149,14 @@
                     <section>
                         <h2>API - The Contenders</h2>
                         
-                        <p>There are at least two technologies you could use to build the API:</p>
+                        <p>There are at least two stacks you could use to build the API:</p>
                             
                         <ul>
-                            <li class="fragment"><b>C# / ASP.net MVC</b>: Extend the existing application, add data models,
-                            build a new API, and update the AngularJS app.</li>
+                            <li class="fragment"><b>C# / ASP.net MVC</b>: Extend the existing MVC app, add data models,
+                            build a new API, integrate with S3, update the AngularJS UI.</li>
                             
-                            <li class="fragment"><b>Node.js</b>: Add a new API server that will handle the document storage,
-                            and update the AngularJS app to integrate with it.</li>
+                            <li class="fragment"><b>Node.js</b>: Add a new Node.js API server, have it integrate with S3,
+                            update the AngularJS UI.</li>
                         </ul>
                         
                     </section>
@@ -167,26 +167,27 @@
                         <p><a href="http://nodejs.org/">Node.js</a> is:</p>
                         
                         <ul>
-                            <li class="fragment">Written in JavaScript, using 
+                            <li class="fragment">Written in <b>JavaScript</b>, using 
                                 Google's <a href="http://en.wikipedia.org/wiki/V8_%28JavaScript_engine%29">V8</a> runtime.</li>
                             
-                            <li class="fragment">A dynamic runtime language, which makes rapid prototyping a breeze.</li>
+                            <li class="fragment">A <b>dynamic runtime language</b>, which makes rapid prototyping a breeze.</li>
                                 
-                            <li class="fragment">Event-driven, asynchronous, single threaded and non-blocking, which 
+                            <li class="fragment">Event-driven, asynchronous, single threaded and <b>non-blocking</b>, which 
                                 makes it able to scale more efficiently than thread-per-connection models (eg. ASP).</li>
                             
-                            <li class="fragment">Compatible with many existing JavaScript frameworks (
+                            <li class="fragment"><b>Compatible</b> with many existing JavaScript frameworks:
                                 <a href="http://underscorejs.org/">underscore</a>, 
                                 <a href="http://lodash.com/">lodash</a>, 
                                 <a href="https://github.com/caolan/async">async</a>, 
-                                <a href="https://github.com/kriskowal/q">Q</a>, etc).</li>
+                                <a href="https://github.com/kriskowal/q">Q</a>, etc.</li>
                             
-                            <li class="fragment">A large community with a lot of active development.</a>
+                            <li class="fragment">A <b>large community</b> with a lot of active development.</a>
                             
-                            <li class="fragment">Production-ready and used by
+                            <li class="fragment"><b>Production-ready</b>: Used by
                                 <a href="http://highscalability.com/blog/2012/10/4/linkedin-moved-from-rails-to-node-27-servers-cut-and-up-to-2.html">LinkedIn</a>,
-                                <a href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U2ECG_ldV8E">eBay</a>, and
-                                supported by Microsoft.</li>
+                                <a href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U2ECG_ldV8E">eBay</a>, 
+                                Yahoo, Walmart and more. Supported by Microsoft (<a href="http://www.microsoft.com/web/webmatrix/node.aspx">Visual Studio</a> and 
+                                <a href="http://azure.microsoft.com/en-us/develop/nodejs/">Azure</a>).</li>
                         </ul>
                     </section>
                     
@@ -200,7 +201,7 @@
                                 feel right at home writing back-end code.</li>
                                 
                             <li class="fragment">Node.js is great for <b>prototyping</b> since there is no build process, 
-                                the dynamic nature of JavaScript makes it easy to quickly change your data model, etc.</li>
+                                JavaScript is a dynamic language, server and client code look the same, etc.</li>
                                 
                             <li class="fragment">Interacting with Amazon S3 introduces a high latency link.  The 
                                 <b>non-blocking</b> nature of Node.js makes it easier to scale in an environment 
@@ -217,8 +218,8 @@
                     <section>
                         <h2>Phase 1: Building the API</h2>
                         
-                        <p><b>Goal</b>: Create a Node.js API server that interacts with Amazon S3, and extend the
-                            AngularJS app to associate documents with tasks</p>
+                        <p><b>Goal</b>: Create a Node.js API server that interacts with Amazon S3, and update the
+                            AngularJS UI to associate documents with tasks</p>
                     </section>
                     
                     <section>
@@ -240,35 +241,72 @@
                     <section>
                         <h2>Phase 1: Basic Code Layout</h2>
                         
-                        <!-- TODO -->
+                        <p>Check out the code on <a href="https://github.com/hello-mean/glsec-2014/tree/master/phase-1/node-server">Github</a>.</p>
+                        
+                        <ul>
+                            <li><code>app.js</code>: Used to run the server: <code>node app.js</code></li>
+                            
+                            <li><code>aws.js</code>: Handles Amazon AWS (S3) interactions</li>
+                            
+                            <li><code>constants.js</code>: Environment constants</li>
+                            
+                            <li><code>http-server.js</code>: HTTP server code</li>
+                            
+                            <li><code>routes.js</code>: REST API routes</li>
+                            
+                            <li><code>controllers/</code>: REST controllers</li>
+                        </ul>
                     </section>
                     
+                    <section>
+                        <h2>Phase 1: REST API</h2>
+
+                        <p>We want to create the following REST API routes:<p>
+                        
+                        <ol>
+                            <li><code>GET /api/todo/:id/files</code><br />Get all of the file names for a todo</li>
+                            
+                            <li><code>GET /api/todo/:id/file/:name</code><br />Get a specific file</li>
+                            
+                            <li><code>DELETE /api/todo/:id/file/:name</code><br />Delete a specific file</li>
+                            
+                            <li><code>POST /api/todo/:id/files</code><br />Upload (overwrite) a file</li>
+                    </section>
+                
                     <section>
                         <h2>Phase 1: Code</h2>
 
                         <pre><code data-trim>
 // imports
-var express = require('express');
-var s3 = new require('aws-sdk').S3();
+var http = require('http'), fs = require('fs'), 
+    express = require('express'), AWS = require('aws-sdk');
+
+// configure AWS
+AWS.config.loadFromPath('./aws.json');
+var s3 = new AWS.S3();
 
 // startup the HTTP server
 app = express();
+var httpServer = http.createServer(app);
+httpServer.listen(8080);
 
-httpServer.listen(80);
+// one of the routes
+app.get('/api/todo/:id/files/:name', function(req, res) {
+    s3.getObject({
+        Bucket: 'glsec-2014',
+        Key: 'todos/' + req.params.id + '/' + req.params.name + '.txt'
+    }, function(err, data) {
+        if (err || !data) { return res.send(500, err); }
 
-// routes
-app.post('/api/todo/:id/files', function(req, res) {
-    fs.readFile(req.files.file.path, function(err, data) {
-        s3.putObject({
-            Bucket: 'glsec2014',
-            Key: '/todos/' + req.params.id + '/' + req.files.file.name,
-            Body: data
-        }, function(err, result) {
-            res.send(err ? 500 : 200, err || true);
-        });
+        var buff = new Buffer(data.Body, "binary");
+        res.send(buff);
     });
 });
                         </code></pre>
+                        
+                        <p><small><i>This is a simplified (but runnable) version of the
+                            <a href="https://github.com/hello-mean/glsec-2014/tree/master/phase-1/node-server">code</a>.
+                        </i></small></p>
                     </section>
                 
                     <section>
@@ -308,8 +346,42 @@ app.post('/api/todo/:id/files', function(req, res) {
                             
                             <li class="fragment">Add Socket.IO events for log events, API hits and periodic server statistics.</li>
                                 
-                            <li class="fragment">Use <a href="http://code.shutterstock.com/rickshaw/">Rickshaw</a> to display real-time charts.</li>
+                            <li class="fragment">Use the <a href="http://code.shutterstock.com/rickshaw/">Rickshaw</a> JavaScript charting library to display real-time charts.</li>
                         </ol>
+                    </section>
+                
+                    <section>
+                        <h2>Phase 2: Code</h2>
+
+                        <pre><code data-trim>
+// ... continued from Phase 1 server code ...
+var socketIo = require('socket.io');
+
+var sockets = [];
+
+io = socketIo.listen(httpServer);
+io.sockets.on('connection', function(socket) {
+    sockets.push(socket);
+
+    socket.emit('log', { msg: 'Hello' });
+});
+                        </code></pre>
+                        
+                        <pre><code data-trim>
+&lt;script src="socket.io.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+// ... AngularJS client code ...
+var socket = io.connect('http://api.foofactory.net');
+
+socket.on('log', function (data) {
+    // log message
+});
+&lt;/script&gt;
+                        </code></pre>
+                        
+                        <p><small><i>This is a simplified (but runnable) version of the
+                            <a href="https://github.com/hello-mean/glsec-2014/tree/master/phase-2/node-server">code</a>.
+                        </i></small></p>
                     </section>
                 
                     <section>
@@ -330,7 +402,7 @@ app.post('/api/todo/:id/files', function(req, res) {
                             <li>Development time: 6 hours</li>
                         </ul>
                         
-                        <p><b>Total:</b></p>
+                        <p style="margin-top: 20px"><b>Total:</b></p>
                         <ul>
                             <li>Node.js LOC: 419</li>
                             
@@ -343,22 +415,61 @@ app.post('/api/todo/:id/files', function(req, res) {
                     <section>
                         <h2>Phase 3: Scaling</h2>
 
-                        <p><b>Goal</b>: Allow the system to be easily scaled.</p>
+                        <p><b>Goal</b>: Allow the system to be easily scaled by Admins.</p>
                     </section>
                     
                     <section>
                         <h2>Phase 3: Steps</h2>
                         
                         <ol>
-                            <li class="fragment">Add an interface for Admins to increase or decrease the number of Node.js API server instances.</li>
+                            <li class="fragment">Add buttons for Admins to increase or decrease the number of 
+                                Node.js API server instances.</li>
                             
+                            <li class="fragment">Add a new controller that will manage 
+                                <a href="https://aws.amazon.com/ec2/">Amazon EC2</a> or 
+                                <a href="http://azure.microsoft.com/en-us/">Azure</a> Node.js
+                                load-balanced instances.</li>
+
                             <li class="fragment">Allow Admins to monitor the number of instances.</li>
                                 
-                            <li class="fragment"></li>
-                                
-                            <li class="fragment"><i>Note:</i> For this stage, we created fake load-balanced instances that pretend to get
-                                API hits for the purposes of demos.</li>
+                            <li class="fragment">Have all Node.js API server instances communicate with the master server, 
+                                sending stats, logs and API hits in real-time.</li>
                         </ol>
+                        
+                        <p class="fragment" style="margin-top: 10px"><small><i>For this phase, we created mock instances 
+                            that pretend to see user activity.</i></small></p>
+                    </section>
+                
+                    <section>
+                        <h2>Phase 3: Code</h2>
+
+                        <pre><code data-trim>
+// ... continued from Phase 2 server code ...
+
+// collect log events from other server instances
+socket.on('log', function(data) {
+    // repeat log to all Admin clients
+    for (var i = 0; i < sockets.length; i++) {
+        sockets[i].emit('log', data);
+    }
+});
+                        </code></pre>
+                        
+                        <pre><code data-trim>
+// workerInstance.js: Server instances also connect 
+// to master API server via Socket.IO
+var socketIoClient = require('socket.io-client');
+
+var io = socketIoClient.connect('http://api.foofactory.net');
+
+client.on('connect', function() {
+    client.emit('log', { msg: 'I connected' });
+});
+                        </code></pre>
+                        
+                        <p><small><i>This is a simplified version of the
+                            <a href="https://github.com/hello-mean/glsec-2014/tree/master/phase-3/node-server">code</a>.
+                        </i></small></p>
                     </section>
                 
                     <section>
@@ -379,7 +490,7 @@ app.post('/api/todo/:id/files', function(req, res) {
                             <li>Development time: 4 hours</li>
                         </ul>
                         
-                        <p><b>Total:</b></p>
+                        <p style="margin-top: 20px"><b>Total:</b></p>
                         <ul>
                             <li>Node.js LOC: 527</li>
                             
@@ -392,7 +503,7 @@ app.post('/api/todo/:id/files', function(req, res) {
                     <section>
                         <h2>Phase 4: Rewriting the ASP.net MVC API</h2>
                         
-                        <p><b>Goal</b>: For comparison, migrate all of the existing ASP.net MVC API to Node.js and MongoDB.</p>
+                        <p><b>Goal</b>: For comparison, migrate all of the existing ASP.net MVC API to Node.js.</p>
                     </section>
                     
                     <section>
@@ -407,9 +518,88 @@ app.post('/api/todo/:id/files', function(req, res) {
                     </section>
                     
                     <section>
+                        <h2>Phase 4: REST API</h2>
+
+                        <p>We want to migrate the following REST APIs to Node.js:<p>
+                        
+                        <ol>
+                            <li><code>GET /api/todolist/:id/todos</code>: Get todos for a list</li>
+                            
+                            <li><code>POST /api/todolist/:id/todos</code>: Post a todo to a list</li>
+                            
+                            <li><code>GET /api/todolists</code>: Get all of the todos for the user</li>
+                            
+                            <li><code>GET /api/todolist/:id</code>: Get a specific todolist</li>
+                            
+                            <li><code>DELETE /api/todolist/:id</code>: Deletes a specific todolist</li>
+                            
+                            <li><code>POST /api/todolist</code>: Creates a todolist</li>
+                    </section>
+                    
+                    <section>
+                        <h2>Phase 4: Code: Data Model</h2>
+                        
+                        <pre><code data-trim>
+// todolist.js
+var mongoose = require('mongoose');
+
+var todoSchema = mongoose.Schema({
+  Title: String,
+  Completed: Boolean
+});
+
+var todoListSchema = mongoose.Schema({
+    Name: String,
+    OwnerId: String,
+    Todos: [todoSchema]
+});
+
+// CommonJS exports
+exports.Todo = mongoose.model('Todo', todoSchema);
+exports.TodoList = mongoose.model('TodoList', todoListSchema);
+
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Phase 4: Code: Controller</h2>
+
+                        <pre><code data-trim>
+var TodoList = require('./todolist').TodoList;
+                        
+app.get('/api/todolists', function(req, res) {
+    var userId = req.get('userId');
+
+    // MongoDB / Mongoose ORM
+    TodoList.find({ OwnerId: userId }, function(err, lists) {
+        if (err) {
+            return res.send(500, err);
+        }
+
+        if (!lists) {
+            return res.send(404);
+        }
+
+        var displayLists = _.map(lists, function(l) { 
+            return l.serialize(); 
+        });
+
+        return res.send(displayLists);
+    });
+});
+                        </code></pre>
+                        
+                        <p><small><i>This is a simplified version of the
+                            <a href="https://github.com/hello-mean/glsec-2014/tree/master/phase-4/node-server">code</a>.
+                        </i></small></p>
+                    </section>
+                    
+                    <section>
                         <h2>Phase 4: Demo</h2>
                         
                         <img src="img/phase-1.png" />
+                        
+                        <p><i>This should look the same as Phase 2 :)</i></p>
                         
                         <p><a href="http://phase4.foofactory.net/">phase4.foofactory.net</a></p>
                     </section>
@@ -419,14 +609,16 @@ app.post('/api/todo/:id/files', function(req, res) {
                         
                         <p><b>Phase 3:</b></p>
                         <ul>
-                            <li>Node.js LOC: TODO</li>
+                            <li>Node.js LOC: 102</li>
+                            
+                            <li>Related ASP.net MVC LOC: 248</li>
                             
                             <li>Development time: TODO hours</li>
                         </ul>
                         
-                        <p><b>Total:</b></p>
+                        <p style="margin-top: 20px"><b>Total:</b></p>
                         <ul>
-                            <li>Node.js LOC: TODO</li>
+                            <li>Node.js LOC: 725</li>
                             
                             <li>Development time: TODO hours</li>
                         </ul>
@@ -434,24 +626,34 @@ app.post('/api/todo/:id/files', function(req, res) {
                 </section>
                 
                 <section>
-                    <h2>Migration Strategies</h2>
+                    <section>
+                        <h2>Migration Strategies</h2>
+                        
+                        <ul>
+                            <li><b>Start small</b>: Consider implementing a small new feature in Node.js before you decide what
+                                parts of your architecture make sense to use Node.js.</li>
+                                
+                            <li><b>Learn to love prototyping</b>: Node is great for quickly experimenting on new features.  Prototype
+                                first before engineering a fully-baked solution.</li>
+                                
+                            <li><b>Consider the hardware costs</b>: While Node.js can scale efficiently in many circumstances,
+                                maintaining hardware that is running separate IIS (or apache) and Node.js instances 
+                                will be more complicated.</li>
+                        </ul>
+                    </section>
                     
-                    <ul>
-                        <li><b>Start small</b>: Consider implementing a small new feature in Node.js before you decide what
-                            parts of your architecture make sense to use Node.js.</li>
-                            
-                        <li><b>Learn to love prototyping</b>: Node is great for quickly experimenting new features.  Prototype
-                            first before engineering a fully-baked solution.</li>
-                            
-                        <li><b>Consider the hardware costs</b>: While Node.js can scale efficiently in many circumstances,
-                            maintaining hardware that is running both IIS (or apache) and Node.js will be more complicated.</li>
-                            
-                        <li><b>Hook Node.js into IIS</b>: Consider using <a href="https://github.com/tjanczuk/iisnode">iisnode</a> to easily
-                            hook Node.js into your IIS server instead of adding a separate Node.js server.</li>
-                            
-                        <li><b>Use it for its' strengths</b>: Node.js is great for scaling.  Use it for REST APIs, real-time servers
-                            and other stateless applications that you may need to scale in the future.</li>
-                    </ul>
+                    <section>
+                        <h2>Migration Strategies Part 2</h2>
+                        
+                        <ul>
+                            <li><b>Hook Node.js into IIS</b>: Consider using <a href="https://github.com/tjanczuk/iisnode">iisnode</a> to easily
+                                hook Node.js into your IIS server instead of adding a separate Node.js server.</li>
+                                
+                            <li><b>Use it for its' strengths</b>: Node.js is great for scaling.  Use it for REST APIs, real-time servers
+                                and other stateless applications that may need to scale in the future.</li>
+                        </ul>
+                    </section>
+                    
                 </section>
                 
                 <section>
