@@ -12,6 +12,7 @@ namespace Presentation.Web.Services
             var ticket = new FormsAuthenticationTicket(1, user.Id.ToString(), DateTime.Now, DateTime.Now.AddDays(4), false, string.Empty);
             string encrypted = FormsAuthentication.Encrypt(ticket);
             response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encrypted));
+            response.Cookies.Add(new HttpCookie("userId", user.Id.ToString()));
         }
 
         public void SignOut()

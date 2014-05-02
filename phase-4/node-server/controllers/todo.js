@@ -161,21 +161,22 @@ function updateTodo(req, res) {
     var userId = req.get('userId');
     var ObjectId = mongoose.Types.ObjectId;
     var id = new ObjectId(req.params.id);
-    var todoInput = new TodoList(req.body);
+    var todoInput = req.body;
 
-    TodoList.findOne({ OwnerId: userId, 'Todos._id': id }, {'Todos.$': 1}, function(err, todo){
+    TodoList.findOne({ OwnerId: userId, 'Todos._id': id }, {'Todos.$': 1}, function(err, todoList){
       if (err) {
         return res.send(500, err);
       }
 
-      if (!todo) {
+      if (!todoList) {
         return res.send(404);
       }
+	  
+	  var todo = todoList.Todos[0];
+      todoList.Todos[0].Completed = todoInput.Completed;
+      todo.markModified('Completed');
 
-      todo.Complete = todoInput.Complete;
-      todo.markModified('Complete')
-
-      todo.parent.save(function(err, todo) {
+      todoList.save(function(err, list) {
         if (err) {
           return res.send(500, err);
         }
@@ -193,16 +194,17 @@ function deleteTodo(req, res) {
     var ObjectId = mongoose.Types.ObjectId;
     var id = new ObjectId(req.params.id);
 
-    TodoList.findOne({ OwnerId: userId, 'Todos._id': id }, {'Todos.$': 1}, function(err, todo){
+    TodoList.findOne({ OwnerId: userId, 'Todos._id': id }, {'Todos.$': 1}, function(err, todoList){
       if (err) {
         return res.send(500, err);
       }
 
-      if (!todo) {
+      if (!todoList || todoList.Todos.length <= 0) {
         return res.send(404);
-      }
+      }	  
 
-      todo.remove(function(err) {
+      todoList.Todos[0].remove();
+	  todoList.save(function(err) {
         if (err) {
           return res.send(500, err);
         }
