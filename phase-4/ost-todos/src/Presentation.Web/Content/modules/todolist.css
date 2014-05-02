@@ -1,0 +1,28 @@
+﻿.todolist .todos {
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+    .todolist .todos label.checkbox {
+        display: inline-block;
+    }
+
+    .todolist .todos button.btn-link {
+        vertical-align: top;
+        border-width: 0;
+        padding: 0 0px 0 10px;
+    }
+
+    .todolist .todos .icon-remove {
+        cursor: pointer;
+        position: relative;
+        left: 5px;
+    }
+
+.todolist .todolist-title i {
+    position: relative;
+    left: 5px;
+    top: 8px;
+    cursor: pointer;
+}
