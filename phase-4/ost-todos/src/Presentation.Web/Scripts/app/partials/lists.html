@@ -16,23 +16,20 @@
                 <h4 ng-hide="completed() == list.Todos.length">Not Done</h4>
                 <ul class="todos">
                     <li ng-repeat="todo in list.Todos | incomplete" ng-controller="TodoCtrl">
-                        <label class="checkbox">
-                            <input ng-click="markDone(todo)" type="checkbox" /> 
-                            {{todo.Title}} 
-                            <i ng-click="deleteTodo(todo)" title="Click to delete todo" class="icon-remove"></i>                          
-                        </label>
+                        <label class="checkbox"><input ng-click="markDone(todo)" type="checkbox" />{{todo.Title}}<i ng-click="deleteTodo(todo)" title="Click to delete todo" class="icon-remove"></i></label>
                         <button class="btn btn-link" ng-click="toggleAttachments()" type="button">
                             <i class="icon-file"></i>({{todo.Attachments.length}})
                         </button>  
-                        <div class="attachments">                            
+                        <div class="attachments">                         
                             <div class="attachment-list" ng-show="showAttachments" ng-controller="AttachmentCtrl">
+                                <h6>Attachments</h6>   
                                 <ul>
                                     <li ng-repeat="att in todo.Attachments">
                                         <a href="http://api.foofactory.net/api/todo/{{todo.Id}}/file/{{att}}">{{att}}</a>
                                         <i title="Click to delete attachment" class="icon-remove" ng-click="deleteAttachment(todo, $index)"></i>
                                     </li>
                                     <li>
-                                        <button class="btn btn-link" show-attach-file todoid="todo.Id" ng-click="startUpload(todo)" type="button">
+                                        <button class="btn btn-mini" show-attach-file todoid="todo.Id" ng-click="startUpload(todo)" type="button">
                                             <i class="icon-plus"></i> Attach File
                                         </button> 
                                     </li>
@@ -44,17 +41,26 @@
                 <h4 ng-hide="completed() == 0">Done</h4>
                 <ul class="todos">
                     <li ng-repeat="todo in list.Todos | complete" ng-controller="TodoCtrl">
-                        <label class="checkbox">
-                            <input ng-click="markNotDone(todo)" type="checkbox" checked="checked" /> 
-                            {{todo.Title}} 
-                            <i ng-click="deleteTodo(todo)" title="Click to delete todo" class="icon-remove"></i>                             
-                        </label>
+                        <label class="checkbox"><input ng-click="markNotDone(todo)" type="checkbox" checked="checked" />{{todo.Title}}<i ng-click="deleteTodo(todo)" title="Click to delete todo" class="icon-remove"></i></label>
                         <button class="btn btn-link" ng-click="toggleAttachments()" type="button">
-                            Attachments({{todo.Attachments.length}})
+                            <i class="icon-file"></i>({{todo.Attachments.length}})
                         </button>
-                        <ul>
-                            <li ng-repeat="att in todo.Attachments">Attachment {{$index}}: {{att}}</li>
-                        </ul> 
+                        <div class="attachments">
+                            <div class="attachment-list" ng-show="showAttachments" ng-controller="AttachmentCtrl">
+                                <h6>Attachments</h6>
+                                <ul>
+                                    <li ng-repeat="att in todo.Attachments">
+                                        <a href="http://api.foofactory.net/api/todo/{{todo.Id}}/file/{{att}}">{{att}}</a>
+                                        <i title="Click to delete attachment" class="icon-remove" ng-click="deleteAttachment(todo, $index)"></i>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-mini" show-attach-file todoid="todo.Id" ng-click="startUpload(todo)" type="button">
+                                            <i class="icon-plus"></i> Attach File
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> 
                     </li>
                 </ul>
             </div>
@@ -104,7 +110,9 @@
 
             <div class="control-group">
                 <div class="controls">
-                    <button type="button" ng-click="upload()" class="btn btn-primary">Upload</button>
+                    <button type="button" ng-click="upload()" ng-disabled="uploading" class="btn btn-primary">
+                        {{!uploading && 'Upload' || 'Uploading..'}}
+                    </button>
                 </div>
             </div>
         </form>
