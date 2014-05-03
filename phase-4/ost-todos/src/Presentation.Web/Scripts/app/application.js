@@ -32,8 +32,9 @@ var application = angular.module("todos", ["todos.controllers", "ngCookies", "ng
 
 application.run(['$rootScope', '$location', '$http', '$cookies', function ($scope, $location, $http, $cookies) {
 
-    $http.defaults.headers.common.userId = $cookies.userId;
-    console.log('Got cookie value of ' + $cookies.userId);
+    if ($cookies.userId) {
+        $http.defaults.headers.common.userId = $cookies.userId;
+    }
 
     $scope.$on('event:loginRequired', function (event) {
         return $location.path('/login');

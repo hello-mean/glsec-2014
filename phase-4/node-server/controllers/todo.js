@@ -5,6 +5,7 @@ var aws = require('../aws');
 var fs = require('fs');
 var async = require('async');
 var mongoose = require('mongoose');
+var _ = require('lodash-node');
 
 var logger = require('../logger').prefix('/api/todo');
 var adminManager = require('../adminManager');
@@ -163,7 +164,7 @@ function updateTodo(req, res) {
     var id = new ObjectId(req.params.id);
     var todoInput = req.body;
 
-    TodoList.findOne({ OwnerId: userId, 'Todos._id': id }, {'Todos.$': 1}, function(err, todoList){
+    TodoList.findOne({ OwnerId: userId, 'Todos._id': id }, function(err, todoList){
       if (err) {
         return res.send(500, err);
       }
@@ -172,9 +173,8 @@ function updateTodo(req, res) {
         return res.send(404);
       }
 	  
-	  var todo = todoList.Todos[0];
-      todoList.Todos[0].Completed = todoInput.Completed;
-      todo.markModified('Completed');
+	  var todo = todoList.Todos.id(id);
+	  todo.Completed = todoInput.Completed;
 
       todoList.save(function(err, list) {
         if (err) {
@@ -194,16 +194,18 @@ function deleteTodo(req, res) {
     var ObjectId = mongoose.Types.ObjectId;
     var id = new ObjectId(req.params.id);
 
-    TodoList.findOne({ OwnerId: userId, 'Todos._id': id }, {'Todos.$': 1}, function(err, todoList){
+    TodoList.findOne({ OwnerId: userId, 'Todos._id': id }, function(err, todoList){
       if (err) {
         return res.send(500, err);
       }
 
-      if (!todoList || todoList.Todos.length <= 0) {
+      if (!todoList) {
         return res.send(404);
       }	  
 
-      todoList.Todos[0].remove();
+	  var todo = todoList.Todos.id(id);
+      todo.remove();
+	  
 	  todoList.save(function(err) {
         if (err) {
           return res.send(500, err);
