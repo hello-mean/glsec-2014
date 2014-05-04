@@ -37,15 +37,15 @@
                 <h3>Migration Strategies for Node.js</h3>
 
                 <p style="margin-top: 50px">
-                    <small><a href="https://github.com/brianmatic">Brian Anderson</a> | <a href="https://github.com/brianmatic">@Brianmatic</a></small>
+                    <small><a href="https://github.com/brianmatic">Brian Anderson</a> <span style="color: #ccc">|</span> <a href="https://github.com/brianmatic">@Brianmatic</a></small>
                 </p>
 
                 <p>
-                    <small><a href="http://nicj.net">Nic Jansma</a> | <a href="https://twitter.com/NicJ">@NicJ</a></small>
+                    <small><a href="http://nicj.net">Nic Jansma</a> <span style="color: #ccc">|</span> <a href="https://twitter.com/NicJ">@NicJ</a></small>
                 </p>
 
                 <p>
-                    <small><a href="http://rdbk.net">Jason Sich</a> | <a href="https://twitter.com/JaSich">@JaSich</a></small>
+                    <small><a href="http://rdbk.net">Jason Sich</a> <span style="color: #ccc">|</span> <a href="https://twitter.com/JaSich">@JaSich</a></small>
                 </p>
             </section>
 
@@ -63,7 +63,7 @@
                 </section>
                 <section>
                     <h2>OST Todos</h2>
-                    <p>We are going to use this app for our migrations demos.  It is a reference sample application that we built and released open source last year at GLSEC.  It is available on Github (<a href="https://github.com/OSTUSA/ost-todos">https://github.com/OSTUSA/ost-todos</a> )</p>
+                    <p>We are going to use this app for our migrations demos.  It is a reference sample application that we built and released open source last year at GLSEC.  It is available on Github (<a href="https://github.com/OSTUSA/ost-todos">https://github.com/OSTUSA/ost-todos</a>)</p>
                     <img src="img/ost-todos.png" />
                 </section>
                 <section>
@@ -98,9 +98,9 @@
                 <section>
                     <h2>Enterprise Process Ready</h2>
                     <ul>
-                        <li><b>Grunt:</b> build tool, think MSBuild</li>
+                        <li><b>Grunt, Gulp:</b> build tool, think MSBuild</li>
                         <li><b>Jenkins:</b> continuous integration, think TeamCity, Bamboo or Cruise Control</li>
-                        <li><b>NodeUnit:</b> unit testing, think nUnit, etc.</li>
+                        <li><b>NodeUnit, Jasmine, Mocha, Vows:</b> unit testing, think nUnit, etc.</li>
                         <li><b>Bower:</b> front end package manager by Twitter</li>
                     </ul>
                 </section>
@@ -183,7 +183,7 @@
 
                         <li class="fragment">
                             BossFoo has read about <a href="http://nodejs.org/">Node.js</a> and
-                            is interested in exploring using it to speed up and unify FooFactory's web development stacks.
+                            is interested in possibly using it to speed up and unify FooFactory's web development stacks.
                         </li>
                     </ul>
                 </section>
@@ -193,8 +193,6 @@
                     <h2>OST Todos Demo</h2>
 
                     <img src="img/ost-todos.png" />
-
-                    <p><i>OST <a href="https://github.com/OSTUSA/ost-todos">Todos</a> was built for GLSEC 2013.</i></p>
 
                     <p><a href="http://phase0.foofactory.net/">phase0.foofactory.net</a></p>
 
@@ -426,13 +424,16 @@
 // imports
 var http = require('http'), fs = require('fs'), 
     express = require('express'), AWS = require('aws-sdk');
+
 // configure AWS
 AWS.config.loadFromPath('./aws.json');
 var s3 = new AWS.S3();
+
 // startup the HTTP server
 app = express();
 var httpServer = http.createServer(app);
 httpServer.listen(8080);
+
 // one of the routes
 app.get('/api/todo/:id/files/:name', function(req, res) {
     s3.getObject({
@@ -503,10 +504,13 @@ app.get('/api/todo/:id/files/:name', function(req, res) {
                     <pre><code data-trim>
 // ... continued from Phase 1 server code ...
 var socketIo = require('socket.io');
+
 var sockets = [];
+
 io = socketIo.listen(httpServer);
 io.sockets.on('connection', function(socket) {
     sockets.push(socket);
+
     socket.emit('log', { msg: 'Hello' });
 });
                         </code></pre>
@@ -605,6 +609,7 @@ socket.on('log', function (data) {
 
                     <pre><code data-trim>
 // ... continued from Phase 2 server code ...
+
 // collect log events from other server instances
 socket.on('log', function(data) {
     // repeat log to all Admin clients
@@ -618,7 +623,9 @@ socket.on('log', function(data) {
 // workerInstance.js: Server instances also connect 
 // to master API server via Socket.IO
 var socketIoClient = require('socket.io-client');
+
 var io = socketIoClient.connect('http://api.foofactory.net');
+
 client.on('connect', function() {
     client.emit('log', { msg: 'I connected' });
 });
@@ -706,15 +713,18 @@ client.on('connect', function() {
                     <pre><code data-trim>
 // todolist.js
 var mongoose = require('mongoose');
+
 var todoSchema = mongoose.Schema({
   Title: String,
   Completed: Boolean
 });
+
 var todoListSchema = mongoose.Schema({
     Name: String,
     OwnerId: String,
     Todos: [todoSchema]
 });
+
 // CommonJS exports
 exports.Todo = mongoose.model('Todo', todoSchema);
 exports.TodoList = mongoose.model('TodoList', todoListSchema);
@@ -726,7 +736,7 @@ exports.TodoList = mongoose.model('TodoList', todoListSchema);
 
                     <pre><code data-trim>
 var TodoList = require('./todolist').TodoList;
-                        
+
 app.get('/api/todolists', function(req, res) {
     var userId = req.get('userId');
     // MongoDB / Mongoose ORM
@@ -734,12 +744,15 @@ app.get('/api/todolists', function(req, res) {
         if (err) {
             return res.send(500, err);
         }
+
         if (!lists) {
             return res.send(404);
         }
+
         var displayLists = _.map(lists, function(l) { 
             return l.serialize(); 
         });
+
         return res.send(displayLists);
     });
 });
@@ -760,7 +773,7 @@ app.get('/api/todolists', function(req, res) {
 
                     <img src="img/phase-1.png" />
 
-                    <p><i>This should look the same as Phase 2 :)</i></p>
+                    <p><i>This should look the same as Phase 2, now powered by Node.js!</i></p>
 
                     <p><a href="http://phase4.foofactory.net/">phase4.foofactory.net</a></p>
                 </section>
