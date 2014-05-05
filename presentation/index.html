@@ -586,19 +586,9 @@ socket.on('log', function (data) {
 
                 <section>
                     <h2>Phase 3: Code</h2>
-                    <p>Server</p>
-                    <pre><code data-trim>
-// ... continued from Phase 2 server code ...
-
-// collect log events from other server instances
-socket.on('log', function(data) {
-    // repeat log to all Admin clients
-    for (var i = 0; i < sockets.length; i++) {
-        sockets[i].emit('log', data);
-    }
-});
-                        </code></pre>
-                    <p>Client</p>
+                    
+                    <p>Load-Balanced Instances</p>
+                    
                     <pre><code data-trim>
 // workerInstance.js: Server instances also connect 
 // to master API server via Socket.IO
@@ -610,7 +600,18 @@ client.on('connect', function() {
     client.emit('log', { msg: 'I connected' });
 });
                         </code></pre>
+                    <p>Master Server</p>
+                    <pre><code data-trim>
+// ... continued from Phase 2 server code ...
 
+// collect log events from other server instances
+socket.on('log', function(data) {
+    // repeat log to all Admin clients
+    for (var i = 0; i < sockets.length; i++) {
+        sockets[i].emit('log', data);
+    }
+});
+                        </code></pre>
                     <p>
                         <small>
                             <i>
