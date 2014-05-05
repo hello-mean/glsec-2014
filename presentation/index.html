@@ -409,26 +409,6 @@
                 </section>
 
                 <section>
-                    <h2>Phase 1: Basic Code Layout</h2>
-
-                    <p>Check out the code on <a href="https://github.com/hello-mean/glsec-2014/tree/master/phase-1/node-server">Github</a>.</p>
-
-                    <ul>
-                        <li><code>app.js</code>: Used to run the server: <code>node app.js</code></li>
-
-                        <li><code>aws.js</code>: Handles Amazon AWS (S3) interactions</li>
-
-                        <li><code>constants.js</code>: Environment constants</li>
-
-                        <li><code>http-server.js</code>: HTTP server code</li>
-
-                        <li><code>routes.js</code>: REST API routes</li>
-
-                        <li><code>controllers/</code>: REST controllers</li>
-                    </ul>
-                </section>
-
-                <section>
                     <h2>Phase 1: REST API</h2>
 
                     <p>We want to create the following REST API routes:<p>
@@ -458,7 +438,7 @@ var s3 = new AWS.S3();
 // startup the HTTP server
 app = express();
 var httpServer = http.createServer(app);
-httpServer.listen(8080);
+httpServer.listen(80);
 
 // one of the routes
 app.get('/api/todo/:id/files/:name', function(req, res) {
@@ -481,13 +461,6 @@ app.get('/api/todo/:id/files/:name', function(req, res) {
                             </i>
                         </small>
                     </p>
-                </section>
-
-                <section>
-                    <h2>Phase 1: AngularJS Code</h2>
-
-                    <pre><code data-trim>
-                    </code></pre>
                 </section>
                 
                 <section>
