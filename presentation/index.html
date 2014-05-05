@@ -68,7 +68,7 @@
                     
                     <p>It is a reference sample application that we built and released open source last year at GLSEC.</p>
                     
-                    <img src="img/ost-todos.png" />
+                    <img src="img/ost-todos.png" height="60%" width="60%" />
                     
                     <p><small>Available on Github: <a href="https://github.com/OSTUSA/ost-todos">https://github.com/OSTUSA/ost-todos</a></small></p>
                 </section>
@@ -90,11 +90,30 @@
                 <section>
                     <h2>What is Node.js?</h2>
                     <p>Node.js is a software platform for scalable server-side and networking applications. Node.js applications are written in JavaScript, and can be run within the Node.js runtime on Windows, Mac OS X and Linux with no changes.</p>
-                    <hr />
+
+                </section>
+                
+                <section>
+                    <h2>Technical Details</h2>
+                    
                     <ul>
-                        <li><b>Node.js:</b> think base .Net Framework and runtime</li>
-                        <li><b>Modules:</b> think libraries like .Net namespace assemblies</li>
-                        <li><b>NPM:</b> think package manager like Nuget</li>
+                        <li>
+                            Node.js runs <b>JavaScript</b>, using
+                            Google's <a href="http://en.wikipedia.org/wiki/V8_%28JavaScript_engine%29">V8</a> runtime (C++).
+                        </li>
+
+                        <li>
+                            Node.js is event-driven, asynchronous, single threaded and <b>non-blocking</b>, which
+                            makes it able to scale more efficiently than thread-per-connection models (eg. ASP).
+                        </li>
+                    </ul>
+                    
+                    <hr />
+ 
+                    <ul>
+                        <li><b>Node.js =</b> base .Net Framework and runtime</li>
+                        <li><b>Modules =</b> libraries like .Net namespace assemblies</li>
+                        <li><b>NPM =</b> package manager like Nuget</li>
                     </ul>
                 </section>
                 
@@ -103,9 +122,9 @@
                    
                     <h1>MEAN</h1>
                     <ol>
-                        <li><b>M</b>ongoDB - NoSQL database server</li>
-                        <li><b>E</b>xpress - Web Server / Framework for Node.js</li>
-                        <li><b>A</b>ngular - JavaScript MVW Framework</li>
+                        <li><b>M</b>ongoDB - Document-based database server</li>
+                        <li><b>E</b>xpress - Web framework for Node.js</li>
+                        <li><b>A</b>ngular - JavaScript MVW framework</li>
                         <li><b>N</b>ode.js - Server side JavaScript</li>
                     </ol>
                 </section>
@@ -113,10 +132,10 @@
                 <section>
                     <h2>Enterprise Process Ready</h2>
                     <ul>
-                        <li><b>Grunt, Gulp:</b> build tool, think MSBuild</li>
-                        <li><b>Jenkins:</b> continuous integration, think TeamCity, Bamboo or Cruise Control</li>
-                        <li><b>NodeUnit, Jasmine, Mocha, Vows:</b> unit testing, think nUnit, etc.</li>
-                        <li><b>Bower:</b> front end package manager by Twitter</li>
+                        <li><b>Grunt, Gulp =</b> build tool (MSBuild)</li>
+                        <li><b>Jenkins, Strider =</b> continuous integration (TeamCity, Bamboo or Cruise Control still work)</li>
+                        <li><b>NodeUnit, Jasmine, Mocha, Vows =</b> unit testing (nUnit)</li>
+                        <li><b>Bower =</b> front end package manager by Twitter</li>
                     </ul>
                 </section>
                 
@@ -128,21 +147,26 @@
                     <h2>PayPal</h2>
 
                     <p><i>"
-                        We are moving every product & every site within PayPal to Node. We started the journey by using it as prototyping framework, then at start of this year we hardened it to work with all PayPal systems. We have several of our beta products out live on NodeJS and half dozen other products in flight. By end of 2014 we hope to have all major experiences redesigned, and rewritten on nodejs.
-                    </i>
-                    </p>
-                    <p>
-                        <i>NodeJS is a forcing function to completely obliterate the old stack and the old experiences.</i>
+                        We are moving <b>every product & every site within PayPal to Node</b>. We started the journey by using it as
+                        <b>prototyping framework</b>... by end 
+                        of 2014 we hope to have <b>all major experiences</b> redesigned, and rewritten on Node.
+                        </i>
                     </p>
 
                     <p>
                         <i>
-                            We are seeing big scale gains, performance boosts and big developer productivity. You can see a talk I did on this here: 
-                        <a href="http://youtu.be/tZWGb0HU2QM">http://youtu.be/tZWGb0HU2QM</a>"
+                            We are seeing big scale gains, <b>performance boosts</b> and big developer productivity."
                         </i>
                     </p>
 
+                    <ul>
+                        <li>Built almost twice as fast with fewer people</li>
+                        <li>33% fewer lines of code</li>
+                        <li>40% less files</li>
+                    </ul>
+                    
                     <hr />
+                    
                     <p>Bill Scott - <a href="http://www.quora.com/Node-js/What-companies-are-using-Node-js-in-production">http://www.quora.com/Node-js/What-companies-are-using-Node-js-in-production</a></p>
 
                 </section>
@@ -150,7 +174,7 @@
                 <section>
                     <h2>Dow Jones</h2>
 
-                    <p><i>"The simple truth is Node has reinvented the way we create websites. Developers build critical functionality in days, not weeks."</i></p>
+                    <p><i>"The simple truth is Node has <b>reinvented</b> the way we create websites. Developers build critical functionality in <b>days, not weeks</b>."</i></p>
                     <p>
                         <b>Michael Yormark</b><br />
                         WSJD Product Operations
@@ -160,28 +184,44 @@
                 </section>
                 
                 <section>
-                    <h2>Why do we care?</h2>
+                    <h2>More Examples</h2>
+                    
                     <ul>
-                        <li>Could it be one stack to rule them all?</li>
-                        <li>One language on the client and server</li>
-                        <li>Simplifies layers and removes need for ORM if you think NoSQL</li>
-                        <li>It is modern and makes you think in terms of modern web apps.</li>
                         <li>
-                            Can we produce better apps with modern UX, faster and cheaper.
+                            <a href="http://highscalability.com/blog/2012/10/4/linkedin-moved-from-rails-to-node-27-servers-cut-and-up-to-2.html">LinkedIn</a>
                         </li>
                         <li>
-                            These technologies seem to be beloved by developers.
+                            <a href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U2ECG_ldV8E">eBay</a>
                         </li>
-                    </ul>
-                    <hr />
-                    <p>
-                        <a target="_blank" href="http://www.hanselman.com/blog/InstallingAndRunningNodejsApplicationsWithinIISOnWindowsAreYouMad.aspx">Why bother with node at all</a>? There's a number of interesting aspects to node as it sits. It uses a very fast JavaScript engine called V8, but more importantly its I/O is asynchronous and event-driven which contrasts with typical synchronous code.
-                    </p>
-                    <p>
-                        <b>Scott Hanselman</b><br />
-                        Microsoft
-                    </p>
+                        <li>
+                            <a href="http://yahooeng.tumblr.com/post/68823943185/nodejs-high-availability">Yahoo</a>
+                        </li>
+                        <li>
+                            <a href="http://venturebeat.com/2012/01/24/why-walmart-is-using-node-js/">Walmart</a>
+                        <li>
+                            Supported by Microsoft (<a href="http://www.microsoft.com/web/webmatrix/node.aspx">Visual Studio</a> and
+                            <a href="http://azure.microsoft.com/en-us/develop/nodejs/">Azure</a>).
+                        </li>
+
+                        <li>The list is long and keeps growing...</li>
                 </section>
+                
+                <section>
+                    <h2>Why should you care?</h2>
+                    <ul>
+                    
+                        <li><b>Less training, less code</b>: One language on the client and server.</li>
+                        
+                        <li><b>Less abstraction</b>: simplifies layers and removes need for ORM if you think NoSQL.</li>
+                        
+                        <li><b>Faster prototyping</b> and bootstrapping.</li>
+                    
+                        <li><b>Modern</b> and makes you think in terms of modern web apps.</li>
+
+                        <li>A <b>large community</b> with a lot of active development. These technologies seem to be beloved by developers.</a>
+                    </ul>
+                </section>
+
                 <section>
                     <h2>Show me</h2>
                     <p>Take it over Nic and Jason</p>
@@ -298,7 +338,8 @@
                     <ul>
                         <li class="fragment">
                             <b>C# / ASP.net MVC</b>: Extend the existing MVC app, add data models,
-                            build a new API, integrate with S3, update the AngularJS UI.
+                            build a new API, update all the layers of the onion,
+                            integrate with S3, update the AngularJS UI.
                         </li>
 
                         <li class="fragment">
@@ -310,64 +351,17 @@
                 </section>
 
                 <section>
-                    <h2>What is Node.js?</h2>
-
-                    <p><a href="http://nodejs.org/">Node.js</a> is:</p>
+                    <h2>And the winner is... Node.js</h2>
 
                     <ul>
-                        <li class="fragment">
-                            Written in <b>JavaScript</b>, using
-                            Google's <a href="http://en.wikipedia.org/wiki/V8_%28JavaScript_engine%29">V8</a> runtime.
-                        </li>
-
-                        <li class="fragment">A <b>dynamic runtime language</b>, which makes rapid prototyping a breeze.</li>
-
-                        <li class="fragment">
-                            Event-driven, asynchronous, single threaded and <b>non-blocking</b>, which
-                            makes it able to scale more efficiently than thread-per-connection models (eg. ASP).
-                        </li>
-
-                        <li class="fragment">
-                            <b>Compatible</b> with many existing JavaScript frameworks:
-                            <a href="http://underscorejs.org/">underscore</a>,
-                            <a href="http://lodash.com/">lodash</a>,
-                            <a href="https://github.com/caolan/async">async</a>,
-                            <a href="https://github.com/kriskowal/q">Q</a>, etc.
-                        </li>
-
-                        <li class="fragment">A <b>large community</b> with a lot of active development.</a>
-
-                        <li class="fragment">
-                            <b>Production-ready</b>: Used by
-                            <a href="http://highscalability.com/blog/2012/10/4/linkedin-moved-from-rails-to-node-27-servers-cut-and-up-to-2.html">LinkedIn</a>,
-                            <a href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U2ECG_ldV8E">eBay</a>,
-                            Yahoo, Walmart and more. Supported by Microsoft (<a href="http://www.microsoft.com/web/webmatrix/node.aspx">Visual Studio</a> and
-                            <a href="http://azure.microsoft.com/en-us/develop/nodejs/">Azure</a>).
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>API - And The Winner Is...</h2>
-
-                    <p>You choose Node.js build your prototype of the new features for BooFoo.  Why?</p>
-
-                    <ul>
-                        <li class="fragment">
-                            Node.js code is <b>JavaScript</b>, so your front-end developers will
-                            feel right at home writing back-end code.
-                        </li>
-
                         <li class="fragment">
                             Node.js is great for <b>prototyping</b> since there is no build process,
                             JavaScript is a dynamic language, server and client code look the same, etc.
                         </li>
 
                         <li class="fragment">
-                            Interacting with Amazon S3 introduces a high latency link.  The
-                            <b>non-blocking</b> nature of Node.js makes it easier to scale in an environment
-                            where client connections may be active for many seconds while files are uploaded
-                            or downloaded from S3.
+                            Amazon S3 introduces a high latency link.  
+                            Node.js is <b>non-blocking</b> so it can scale better.
                         </li>
 
                         <li class="fragment">
@@ -393,16 +387,22 @@
 
                     <ol>
                         <li class="fragment">
+                            Get <a href="http://nodeguide.com/">up and running with Node</a>...
+                        </li>
+
+                        <li class="fragment">
                             Bootstrap an <a href="http://expressjs.com/">express</a> project: <br />
-                            <code>node_modules/express/bin/express node-server</code>
+                            <code>&gt; express node-server</code>
                         </li>
 
                         <li class="fragment">Add a few simple REST routes for document creating, listing, retrieval and removal.</li>
 
                         <li class="fragment">
                             Integrate with Amazon's <a href="http://aws.amazon.com/sdkfornodejs/">SDK for JavaScript</a>: <br />
-                            <code>npm install aws-sdk</code>
+                            <code>&gt; npm install aws-sdk</code>
                         </li>
+                        
+                        <li class="fragment">Update the AngularJS application to point to the Node.js API server.</li>
 
                         <li class="fragment">Hook your new node server into IIS server using <a href="https://github.com/tjanczuk/iisnode">iisnode</a>.</li>
                     </ol>
@@ -484,6 +484,13 @@ app.get('/api/todo/:id/files/:name', function(req, res) {
                 </section>
 
                 <section>
+                    <h2>Phase 1: AngularJS Code</h2>
+
+                    <pre><code data-trim>
+                    </code></pre>
+                </section>
+                
+                <section>
                     <h2>Phase 1: Demo</h2>
 
                     <img src="img/phase-1.png" />
@@ -491,18 +498,8 @@ app.get('/api/todo/:id/files/:name', function(req, res) {
                     <p><a href="http://phase1.foofactory.net/">phase1.foofactory.net</a></p>
                 </section>
 
-                <section>
-                    <h2>Phase 1: Review</h2>
-
-                    <p>Phase 1:</p>
-                    <ul>
-                        <li>Node.js LOC: 292</li>
-
-                        <li>Development time: 6 hours</li>
-                    </ul>
-                </section>
-
             </section>
+
             <section>
                 <section>
                     <h2>Phase 2: Building the Admin Interface</h2>
@@ -527,6 +524,7 @@ app.get('/api/todo/:id/files/:name', function(req, res) {
                 <section>
                     <h2>Phase 2: Code</h2>
 
+                    <p>Server</p>
                     <pre><code data-trim>
 // ... continued from Phase 1 server code ...
 var socketIo = require('socket.io');
@@ -540,7 +538,8 @@ io.sockets.on('connection', function(socket) {
     socket.emit('log', { msg: 'Hello' });
 });
                         </code></pre>
-
+                    
+                    <p>Client</p>
                     <pre><code data-trim>
 &lt;script src="socket.io.js"&gt;&lt;/script&gt;
 &lt;script&gt;
@@ -565,30 +564,12 @@ socket.on('log', function (data) {
                 <section>
                     <h2>Phase 2: Demo</h2>
 
-                    <img src="img/phase-2.png" />
+                    <img src="img/phase-2.png" width="75%" height="75%" />
 
                     <p><a href="http://phase2.foofactory.net/">phase2.foofactory.net</a></p>
                 </section>
-
-                <section>
-                    <h2>Phase 2: Review</h2>
-
-                    <p><b>Phase 2:</b></p>
-                    <ul>
-                        <li>Node.js LOC: 127</li>
-
-                        <li>Development time: 6 hours</li>
-                    </ul>
-
-                    <p style="margin-top: 20px"><b>Total:</b></p>
-                    <ul>
-                        <li>Node.js LOC: 419</li>
-
-                        <li>Development time: 10 hours</li>
-                    </ul>
-                </section>
-
             </section>
+            
             <section>
                 <section>
                     <h2>Phase 3: Scaling</h2>
@@ -602,11 +583,11 @@ socket.on('log', function (data) {
                     <ol>
                         <li class="fragment">
                             Add buttons for Admins to increase or decrease the number of
-                            Node.js API server instances.
+                            Node.js API server instances (enterprise or cloud).
                         </li>
 
                         <li class="fragment">
-                            Add a new controller that will manage
+                            Add a new controller that will manage internal VMs,
                             <a href="https://aws.amazon.com/ec2/">Amazon EC2</a> or
                             <a href="http://azure.microsoft.com/en-us/">Azure</a> Node.js
                             load-balanced instances.
@@ -632,7 +613,7 @@ socket.on('log', function (data) {
 
                 <section>
                     <h2>Phase 3: Code</h2>
-
+                    <p>Server</p>
                     <pre><code data-trim>
 // ... continued from Phase 2 server code ...
 
@@ -644,7 +625,7 @@ socket.on('log', function(data) {
     }
 });
                         </code></pre>
-
+                    <p>Client</p>
                     <pre><code data-trim>
 // workerInstance.js: Server instances also connect 
 // to master API server via Socket.IO
@@ -674,26 +655,8 @@ client.on('connect', function() {
 
                     <p><a href="http://phase3.foofactory.net/">phase3.foofactory.net</a></p>
                 </section>
-
-                <section>
-                    <h2>Phase 3: Review</h2>
-
-                    <p><b>Phase 3:</b></p>
-                    <ul>
-                        <li>Node.js LOC: 108</li>
-
-                        <li>Development time: 4 hours</li>
-                    </ul>
-
-                    <p style="margin-top: 20px"><b>Total:</b></p>
-                    <ul>
-                        <li>Node.js LOC: 527</li>
-
-                        <li>Development time: 14 hours</li>
-                    </ul>
-                </section>
-
             </section>
+
             <section>
                 <section>
                     <h2>Phase 4: Rewriting the ASP.net MVC API</h2>
@@ -708,7 +671,7 @@ client.on('connect', function() {
                         <li class="fragment">Create a new REST API in the Node.js server that mimics the ASP.NET MVC REST API.</li>
 
                         <li class="fragment">
-                            Use a NoSQL solution such as <a href="http://www.mongodb.com/">MongoDB</a> for
+                            Simplify by using a NoSQL solution such as <a href="http://www.mongodb.com/">MongoDB</a> for
                             todo storage.
                         </li>
                     </ol>
@@ -717,7 +680,7 @@ client.on('connect', function() {
                 <section>
                     <h2>Phase 4: REST API</h2>
 
-                    <p>We want to migrate the following REST APIs to Node.js:<p>
+                    <p>Leave the client alone.  Migrate the following REST APIs to Node.js:<p>
 
                         <ol>
                             <li><code>GET /api/todolist/:id/todos</code>: Get todos for a list</li>
@@ -746,9 +709,9 @@ var todoSchema = mongoose.Schema({
 });
 
 var todoListSchema = mongoose.Schema({
-    Name: String,
-    OwnerId: String,
-    Todos: [todoSchema]
+  Name: String,
+  OwnerId: String,
+  Todos: [todoSchema]
 });
 
 // CommonJS exports
@@ -767,23 +730,38 @@ app.get('/api/todolists', function(req, res) {
     var userId = req.get('userId');
     // MongoDB / Mongoose ORM
     TodoList.find({ OwnerId: userId }, function(err, lists) {
-        if (err) {
-            return res.send(500, err);
-        }
+        if (err) { return res.send(500, err); }
 
-        if (!lists) {
-            return res.send(404);
-        }
+        if (!lists) { return res.send(404); }
 
-        var displayLists = _.map(lists, function(l) { 
-            return l.serialize(); 
-        });
-
-        return res.send(displayLists);
+        return res.send(lists);
     });
 });
                         </code></pre>
+                </section>
+                
+                <section>
+                    <h2>Phase 4: Code: Data Model</h2>
 
+                    <pre><code data-trim>
+// todolist.js
+var mongoose = require('mongoose');
+
+var todoSchema = mongoose.Schema({
+  Title: String,
+  Completed: Boolean
+});
+
+var todoListSchema = mongoose.Schema({
+  Name: String,
+  OwnerId: String,
+  Todos: [todoSchema]
+});
+
+// CommonJS exports
+exports.Todo = mongoose.model('Todo', todoSchema);
+exports.TodoList = mongoose.model('TodoList', todoListSchema);
+                        </code></pre>
                     <p>
                         <small>
                             <i>
@@ -792,6 +770,28 @@ app.get('/api/todolists', function(req, res) {
                             </i>
                         </small>
                     </p>
+                </section>
+
+                <section>
+                    <h2>Phase 4: Code: Client</h2>
+
+                    <b>Before</b>
+                    <pre><code data-trim>
+angular.module("todos.services", ['ngResource']).
+  factory("TodoList", ['$resource', function ($resource) {
+    return $resource('/api/todolists/:id', { id: '@Id' });
+  }]).
+}]).
+                        </code></pre>
+                        
+                    <b>After</b>
+                    <pre><code data-trim>
+angular.module("todos.services", ['ngResource']).
+  factory("TodoList", ['$resource', function ($resource) {
+    return $resource('http://api.foofactory.net/api/todolists/:id', { id: '@Id' });
+  }]).
+}]).
+                        </code></pre>
                 </section>
 
                 <section>
@@ -804,25 +804,6 @@ app.get('/api/todolists', function(req, res) {
                     <p><a href="http://phase4.foofactory.net/">phase4.foofactory.net</a></p>
                 </section>
 
-                <section>
-                    <h2>Phase 4: Review</h2>
-
-                    <p><b>Phase 3:</b></p>
-                    <ul>
-                        <li>Node.js LOC: 102</li>
-
-                        <li>Related ASP.net MVC LOC: 248</li>
-
-                        <li>Development time: TODO hours</li>
-                    </ul>
-
-                    <p style="margin-top: 20px"><b>Total:</b></p>
-                    <ul>
-                        <li>Node.js LOC: 725</li>
-
-                        <li>Development time: TODO hours</li>
-                    </ul>
-                </section>
             </section>
 
             <section>
@@ -841,25 +822,12 @@ app.get('/api/todolists', function(req, res) {
                         </li>
 
                         <li>
-                            <b>Consider the hardware costs</b>: While Node.js can scale efficiently in many circumstances,
-                            maintaining hardware that is running separate IIS (or apache) and Node.js instances
-                            will be more complicated.
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>Migration Strategies Part 2</h2>
-
-                    <ul>
-                        <li>
                             <b>Hook Node.js into IIS</b>: Consider using <a href="https://github.com/tjanczuk/iisnode">iisnode</a> to easily
                             hook Node.js into your IIS server instead of adding a separate Node.js server.
                         </li>
 
                         <li>
-                            <b>Use it for its' strengths</b>: Node.js is great for scaling.  Use it for REST APIs, real-time servers
-                            and other stateless applications that may need to scale in the future.
+                            <b>Use it alongside your existing apps</b>: Give it a try
                         </li>
                     </ul>
                 </section>
@@ -884,7 +852,7 @@ app.get('/api/todolists', function(req, res) {
                     </li>
 
                     <p style="margin-top: 50px">
-                        <small><a href="https://github.com/brianmatic">Brian Anderson</a> | <a href="https://github.com/brianmatic">@BrianMatic</a></small>
+                        <small><a href="https://github.com/brianmatic">Brian Anderson</a> | <a href="https://github.com/brianmatic">@Brianmatic</a></small>
                     </p>
 
                     <p>
@@ -894,7 +862,12 @@ app.get('/api/todolists', function(req, res) {
                     <p>
                         <small><a href="http://rdbk.net">Jason Sich</a> | <a href="https://twitter.com/JaSich">@JaSich</a></small>
                     </p>
+                    
+                    <p>
+                        <small><a href="http://www.ostusa.com/app/dev/">OST App Dev</a></small>
+                    </p>
             </section>
+
 
         </div>
 
